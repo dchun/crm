@@ -1,0 +1,1 @@
+json.extract! @district, :id, :state, :name, :college_readiness_score, :tested_ap, :passed_ap, :math_score, :math_proficient, :math_not_proficient, :reading_score, :reading_proficient, :reading_not_proficient, :created_at, :updated_at

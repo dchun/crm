@@ -1,0 +1,182 @@
+<%= form_for @school, :html => { :class => 'form-horizontal' } do |f| %>
+  <% if @school.errors.any? %>
+    <div id="error_explanation">
+      <p><%= pluralize(@school.errors.count, "error") %> prohibited this school from being saved:</p>
+
+      <ul>
+      <% @school.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :state_rank, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :state_rank, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :national_rank, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :national_rank, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :college_readiness_score, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :college_readiness_score, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :tested_ap_ib, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :tested_ap_ib, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :pass_ap_ib, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :pass_ap_ib, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :math_score, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :math_score, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :math_proficient, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :math_proficient, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :math_not_proficient, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :math_not_proficient, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :reading_score, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :reading_score, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :reading_proficient, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :reading_proficient, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :reading_not_proficient, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :reading_not_proficient, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :student_teacher_ratio, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :student_teacher_ratio, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :street_address, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :street_address, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :city, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :city, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :state, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :state, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :zip, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :zip, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :latitude, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :latitude, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :longitude, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :longitude, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :total_enrollment, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :total_enrollment, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :total_economically_disadvantaged, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :total_economically_disadvantaged, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :receives_title_i_funding, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :receives_title_i_funding, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :ap_student_performance_participation_rate, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :ap_student_performance_participation_rate, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :ap_student_performance_participant_passing_rate, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :ap_student_performance_participant_passing_rate, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :ap_student_performance_exam_per_test_taker, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :ap_student_performance_exam_per_test_taker, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :ap_student_performance_exam_pass_rate, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :ap_student_performance_exam_pass_rate, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :district_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :district_id, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                schools_path, :class => 'btn' %>
+  </div>
+<% end %>

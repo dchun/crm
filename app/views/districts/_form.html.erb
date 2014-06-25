@@ -1,0 +1,86 @@
+<%= form_for @district, :html => { :class => 'form-horizontal' } do |f| %>
+  <% if @district.errors.any? %>
+    <div id="error_explanation">
+      <p><%= pluralize(@district.errors.count, "error") %> prohibited this district from being saved:</p>
+
+      <ul>
+      <% @district.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label :state, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :state, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :college_readiness_score, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :college_readiness_score, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :tested_ap, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :tested_ap, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :passed_ap, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :passed_ap, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :math_score, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :math_score, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :math_proficient, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :math_proficient, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :math_not_proficient, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :math_not_proficient, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :reading_score, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :reading_score, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :reading_proficient, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :reading_proficient, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :reading_not_proficient, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :reading_not_proficient, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                districts_path, :class => 'btn' %>
+  </div>
+<% end %>

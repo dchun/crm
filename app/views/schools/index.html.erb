@@ -1,0 +1,90 @@
+<%- model_class = School -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:state_rank) %></th>
+      <th><%= model_class.human_attribute_name(:national_rank) %></th>
+      <th><%= model_class.human_attribute_name(:college_readiness_score) %></th>
+      <th><%= model_class.human_attribute_name(:tested_ap_ib) %></th>
+      <th><%= model_class.human_attribute_name(:pass_ap_ib) %></th>
+      <th><%= model_class.human_attribute_name(:math_score) %></th>
+      <th><%= model_class.human_attribute_name(:math_proficient) %></th>
+      <th><%= model_class.human_attribute_name(:math_not_proficient) %></th>
+      <th><%= model_class.human_attribute_name(:reading_score) %></th>
+      <th><%= model_class.human_attribute_name(:reading_proficient) %></th>
+      <th><%= model_class.human_attribute_name(:reading_not_proficient) %></th>
+      <th><%= model_class.human_attribute_name(:student_teacher_ratio) %></th>
+      <th><%= model_class.human_attribute_name(:street_address) %></th>
+      <th><%= model_class.human_attribute_name(:city) %></th>
+      <th><%= model_class.human_attribute_name(:state) %></th>
+      <th><%= model_class.human_attribute_name(:zip) %></th>
+      <th><%= model_class.human_attribute_name(:latitude) %></th>
+      <th><%= model_class.human_attribute_name(:longitude) %></th>
+      <th><%= model_class.human_attribute_name(:total_enrollment) %></th>
+      <th><%= model_class.human_attribute_name(:total_economically_disadvantaged) %></th>
+      <th><%= model_class.human_attribute_name(:receives_title_i_funding) %></th>
+      <th><%= model_class.human_attribute_name(:ap_student_performance_participation_rate) %></th>
+      <th><%= model_class.human_attribute_name(:ap_student_performance_participant_passing_rate) %></th>
+      <th><%= model_class.human_attribute_name(:ap_student_performance_exam_per_test_taker) %></th>
+      <th><%= model_class.human_attribute_name(:ap_student_performance_exam_pass_rate) %></th>
+      <th><%= model_class.human_attribute_name(:district_id) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @schools.each do |school| %>
+      <tr>
+        <td><%= link_to school.id, school_path(school) %></td>
+        <td><%= school.name %></td>
+        <td><%= school.state_rank %></td>
+        <td><%= school.national_rank %></td>
+        <td><%= school.college_readiness_score %></td>
+        <td><%= school.tested_ap_ib %></td>
+        <td><%= school.pass_ap_ib %></td>
+        <td><%= school.math_score %></td>
+        <td><%= school.math_proficient %></td>
+        <td><%= school.math_not_proficient %></td>
+        <td><%= school.reading_score %></td>
+        <td><%= school.reading_proficient %></td>
+        <td><%= school.reading_not_proficient %></td>
+        <td><%= school.student_teacher_ratio %></td>
+        <td><%= school.street_address %></td>
+        <td><%= school.city %></td>
+        <td><%= school.state %></td>
+        <td><%= school.zip %></td>
+        <td><%= school.latitude %></td>
+        <td><%= school.longitude %></td>
+        <td><%= school.total_enrollment %></td>
+        <td><%= school.total_economically_disadvantaged %></td>
+        <td><%= school.receives_title_i_funding %></td>
+        <td><%= school.ap_student_performance_participation_rate %></td>
+        <td><%= school.ap_student_performance_participant_passing_rate %></td>
+        <td><%= school.ap_student_performance_exam_per_test_taker %></td>
+        <td><%= school.ap_student_performance_exam_pass_rate %></td>
+        <td><%= school.district_id %></td>
+        <td><%=l school.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_school_path(school), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      school_path(school),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_school_path,
+            :class => 'btn btn-primary' %>
+
+<%= link_to "Import contacts", new_school_import_path, class: "btn btn-default" %>
