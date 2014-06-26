@@ -1,6 +1,5 @@
 class School < ActiveRecord::Base
   belongs_to :district
-  has_many :contacts
 
   validates_presence_of :name
   validates_presence_of :state_rank

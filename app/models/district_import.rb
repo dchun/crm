@@ -36,8 +36,13 @@ class DistrictImport
     districts = []
     (2..spreadsheet.last_row).collect do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      district = District.find_by_id(row["id"]) || District.new
-      district.attributes = row.to_hash.slice(*District.attribute_names())
+      if row["id"].present?
+        district = District.find_by_id(row["id"]) || District.new
+        district.attributes = row.to_hash.slice(*District.attribute_names())
+      else
+        district = District.find_by_name(row["name"]) || District.new
+        district.attributes = row.to_hash.slice(*District.attribute_names())
+      end
       districts << district
     end
     districts
@@ -45,9 +50,9 @@ class DistrictImport
 
   def open_spreadsheet
     case File.extname(file.original_filename)
-    when ".csv" then Roo::CSV.new(file.path)
-    when ".xls" then Roo::Excel.new(file.path)
-    when ".xlsx" then Roo::Excelx.new(file.path)
+    when ".csv" then Roo::CSV.new(file.path, file_warning: :ignore)
+    when ".xls" then Roo::Excel.new(file.path, file_warning: :ignore)
+    when ".xlsx" then Roo::Excelx.new(file.path, file_warning: :ignore)
     else raise "Unknown file type: #{file.original_filename}"
     end
   end

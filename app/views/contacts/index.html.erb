@@ -5,16 +5,16 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:fname) %></th>
-      <th><%= model_class.human_attribute_name(:lname) %></th>
-      <th><%= model_class.human_attribute_name(:email) %></th>
-      <th><%= model_class.human_attribute_name(:salutation) %></th>
-      <th><%= model_class.human_attribute_name(:position) %></th>
-      <th><%= model_class.human_attribute_name(:role) %></th>
-      <th><%= model_class.human_attribute_name(:complete) %></th>
-      <th><%= model_class.human_attribute_name(:school_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><a href="#"><span>ID</span></a></th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Salutation</th>
+      <th>Position</th>
+      <th>Role</th>
+      <th>School</th>
+      <th>Updated</th>
+      <th>Created</th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -28,9 +28,9 @@
         <td><%= contact.salutation %></td>
         <td><%= contact.position %></td>
         <td><%= contact.role %></td>
-        <td><%= contact.complete %></td>
-        <td><%= contact.school_id %></td>
-        <td><%=l contact.created_at %></td>
+        <td><%= contact.school.name %></td>
+        <td><%= contact.updated_at.strftime("%B %d, %Y") %></td>
+        <td><%= contact.created_at.strftime("%B %d, %Y") %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_contact_path(contact), :class => 'btn btn-mini' %>
@@ -49,5 +49,5 @@
             new_contact_path,
             :class => 'btn btn-primary' %>
 
-<%= link_to "Import contacts", new_contact_import_path, class: "btn btn-default" %>
+<%= link_to "Import Contacts", new_contact_import_path, class: "btn btn-default" %>
 

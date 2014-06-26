@@ -1,2 +1,32 @@
-<h1>DistrictImports#new</h1>
-<p>Find me in app/views/district_imports/new.html.erb</p>
+<% if @district_import.errors.any? %>
+  <div class="alert fade in alert-error"><button class="close" data-dismiss="alert">×</button>
+    <p><%= pluralize(@district_import.errors.count, "error") %> prohibited this import from completing:</p>
+    <ul>
+    <% @district_import.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<h1>District Import</h1>
+
+<p>A CSV or Excel file can be used to import records. The first row should be the column name. The following columns are allowed.</p>
+
+<ul>
+  <% District.columns.each do |column| %>
+    <li>
+      <strong><%= column.name %></strong> -
+      <%= column.type.to_s.titleize %> type
+    </li>
+  <% end %>
+</ul>
+
+<p>If <strong>id</strong> is supplied it will update the matching record, else if id column is missing <strong>name</strong> will be used to update the matching record instead of creating a new one.</p>
+
+<%= form_for @district_import do |f| %>
+  <div class="field">
+    <%= f.file_field :file %>
+  </div>
+  <div class="buttons"><%= f.submit "Import", class: "btn btn-default" %></div>
+<% end %>

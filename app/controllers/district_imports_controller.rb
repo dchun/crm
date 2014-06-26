@@ -10,5 +10,8 @@ class DistrictImportsController < ApplicationController
     else
       render :new
     end 
+  rescue
+    flash[:error] = "Something seems to be wrong. Did you forget to upload a file?"
+    redirect_to(:action => 'new')
   end
 end

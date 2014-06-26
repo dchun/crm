@@ -9,6 +9,9 @@ class ContactImportsController < ApplicationController
       redirect_to contacts_url, notice: "Imported contacts."
     else
       render :new
-    end 
+    end
+  rescue
+    flash[:error] = "Something seems to be wrong. Did you forget to upload a file?"
+    redirect_to(:action => 'new')
   end
 end
