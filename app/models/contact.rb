@@ -2,7 +2,6 @@ class Contact < ActiveRecord::Base
   belongs_to :school
 
   validates_presence_of :fname
-  validates_presence_of :lname
 
   validates_inclusion_of :salutation, in: :acceptable_salutation_list
   validates_inclusion_of :position, in: :acceptable_position_list
@@ -12,6 +11,12 @@ class Contact < ActiveRecord::Base
                          message: "may be duplicate, check against School names",
                          in: :school_first_downcase_list, 
                          unless: :school_full_match
+
+  after_validation :set_record_complete
+
+  def set_record_complete
+    self.fname? && self.lname? && self.salutation? && self.position? && self.role? ? self.complete = true : self.complete = false 
+  end
 
   def acceptable_salutation_list
     s_list = AcceptableContactSalutation.all
