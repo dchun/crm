@@ -12,10 +12,10 @@ gem 'spring',        group: :development
 
 gem 'execjs'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
-gem 'bootstrap-sass'
-gem 'devise', '~> 3.2.4'
-gem 'geocoder', '~> 1.2.2'
-gem 'cancan', '~> 1.6.10'
+gem 'bootstrap-sass' # For styling
+gem 'devise', '~> 3.2.4' # For user authentication
+gem 'geocoder', '~> 1.2.2' # For location based filtering
+gem 'cancan', '~> 1.6.10' # For role based authroization
 gem 'roo' # For excel processing
 
 group :production do

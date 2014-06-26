@@ -10,8 +10,8 @@ class ContactImportsController < ApplicationController
     else
       render :new
     end
-  # rescue
-  #   flash[:error] = "Something seems to be wrong. Did you forget to upload a file? Also, if ID column is present make sure all fields are filled in. Perhaps you forgot to fill in all school fields?"
-  #   redirect_to(:action => 'new')
+  rescue
+    flash[:error] = "Something seems to be wrong. Did you forget to upload a file? Also, if ID column is present make sure all fields are filled in. Perhaps you forgot to fill in all school fields?"
+    redirect_to(:action => 'new')
   end
 end
