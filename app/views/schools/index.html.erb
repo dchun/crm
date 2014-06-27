@@ -8,31 +8,31 @@
       <th><%= sort_link @search, :state, "State", {}, data: { toggle: :tooltip, placement: :top, title: "State" } %></th>
       <th><%= sort_link @search, :district_name, "District", {}, data: { toggle: :tooltip, placement: :top, title: "District Name" } %></th> 
       <th><%= sort_link @search, :name, "Name", {}, data: { toggle: :tooltip, placement: :top, title: "School Name" } %></th>
-      <th><%= sort_link @search, :state_rank, "SR", {}, data: { toggle: :tooltip, placement: :top, title: "State Rank" } %></th>
-      <th><%= sort_link @search, :national_rank, "NR", {}, data: { toggle: :tooltip, placement: :top, title: "National Rank" } %></th>
-      <th><%= sort_link @search, :college_readiness_score, "CRS", {}, data: { toggle: :tooltip, placement: :top, title: "College Readiness Score" } %></th>
-      <th><%= sort_link @search, :tested_ap_ib, "TAPIB", {}, data: { toggle: :tooltip, placement: :top, title: "% Tested AP/IB" } %></th>
-      <th><%= sort_link @search, :pass_ap_ib, "PAPIB", {}, data: { toggle: :tooltip, placement: :top, title: "% Passed AP/IB" } %></th>
-      <th><%= sort_link @search, :math_score, "MS", {}, data: { toggle: :tooltip, placement: :top, title: "Math Score" } %></th>
-      <th><%= sort_link @search, :math_proficient, "MP", {}, data: { toggle: :tooltip, placement: :top, title: "Math Proficient %" } %></th>
-      <th><%= sort_link @search, :math_not_proficient, "MnP", {}, data: { toggle: :tooltip, placement: :top, title: "Math Not Proficient %" } %></th>
-      <th><%= sort_link @search, :reading_score, "RS", {}, data: { toggle: :tooltip, placement: :top, title: "Reading Score" } %></th>
-      <th><%= sort_link @search, :reading_proficient, "RP", {}, data: { toggle: :tooltip, placement: :top, title: "Reading Proficient %" } %></th>
-      <th><%= sort_link @search, :reading_not_proficient, "RnP", {}, data: { toggle: :tooltip, placement: :top, title: "Reading Not Proficient %" } %></th>
-      <th><%= sort_link @search, :student_teacher_ratio, "STR", {}, data: { toggle: :tooltip, placement: :top, title: "Student/Teacher Ratio" } %></th>
-      <th><%= sort_link @search, :total_enrollment, "TE", {}, data: { toggle: :tooltip, placement: :top, title: "Total Enrollment" } %></th>
-      <th><%= sort_link @search, :total_economically_disadvantaged, "TED", {}, data: { toggle: :tooltip, placement: :top, title: "Total Economically Disadvantaged" } %></th>
-      <th><%= sort_link @search, :receives_title_i_funding, "RTIF", {}, data: { toggle: :tooltip, placement: :top, title: "Receives Title I Funding" } %></th>
-      <th><%= sort_link @search, :ap_student_performance_participation_rate, "PR", {}, data: { toggle: :tooltip, placement: :top, title: "AP Student Performance: Participation Rate" } %></th>
-      <th><%= sort_link @search, :ap_student_performance_participant_passing_rate, "PPR", {}, data: { toggle: :tooltip, placement: :top, title: "AP Student Performance: Participant Passing Rate" } %></th>
-      <th><%= sort_link @search, :ap_student_performance_exam_per_test_taker, "EPTT", {}, data: { toggle: :tooltip, placement: :top, title: "AP Student Performance: Exam Per Test Taker" } %></th>
-      <th><%= sort_link @search, :ap_student_performance_exam_pass_rate, "EPR", {}, data: { toggle: :tooltip, placement: :top, title: "AP Student Performance: Exam Pass Rate" } %></th>
+      <th class="span1"><%= sort_link @search, :state_rank, "SR", {}, data: { toggle: :tooltip, placement: :top, title: "State Rank" } %></th>
+      <th class="span1"><%= sort_link @search, :national_rank, "NR", {}, data: { toggle: :tooltip, placement: :top, title: "National Rank" } %></th>
+      <th class="span1"><%= sort_link @search, :college_readiness_score, "CRS", {}, data: { toggle: :tooltip, placement: :top, title: "College Readiness Score" } %></th>
+      <th class="span1"><%= sort_link @search, :tested_ap_ib, "TIB", {}, data: { toggle: :tooltip, placement: :top, title: "% Tested AP/IB" } %></th>
+      <th class="span1"><%= sort_link @search, :pass_ap_ib, "PIB", {}, data: { toggle: :tooltip, placement: :top, title: "% Passed AP/IB" } %></th>
+      <th class="span1"><%= sort_link @search, :math_score, "MS", {}, data: { toggle: :tooltip, placement: :top, title: "Math Score" } %></th>
+      <th class="span1"><%= sort_link @search, :math_proficient, "MP", {}, data: { toggle: :tooltip, placement: :top, title: "Math Proficient %" } %></th>
+      <th class="span1"><%= sort_link @search, :math_not_proficient, "MnP", {}, data: { toggle: :tooltip, placement: :top, title: "Math Not Proficient %" } %></th>
+      <th class="span1"><%= sort_link @search, :reading_score, "RS", {}, data: { toggle: :tooltip, placement: :top, title: "Reading Score" } %></th>
+      <th class="span1"><%= sort_link @search, :reading_proficient, "RP", {}, data: { toggle: :tooltip, placement: :top, title: "Reading Proficient %" } %></th>
+      <th class="span1"><%= sort_link @search, :reading_not_proficient, "RnP", {}, data: { toggle: :tooltip, placement: :top, title: "Reading Not Proficient %" } %></th>
+      <th class="span1"><%= sort_link @search, :student_teacher_ratio, "STR", {}, data: { toggle: :tooltip, placement: :top, title: "Student/Teacher Ratio" } %></th>
+      <th class="span1"><%= sort_link @search, :total_enrollment, "TE", {}, data: { toggle: :tooltip, placement: :top, title: "Total Enrollment" } %></th>
+      <th class="span1"><%= sort_link @search, :total_economically_disadvantaged, "TED", {}, data: { toggle: :tooltip, placement: :top, title: "Total Economically Disadvantaged" } %></th>
+      <th class="span2"><%= sort_link @search, :receives_title_i_funding, "RTIF", {}, data: { toggle: :tooltip, placement: :top, title: "Receives Title I Funding" } %></th>
+      <th class="span1"><%= sort_link @search, :ap_student_performance_participation_rate, "PR", {}, data: { toggle: :tooltip, placement: :top, title: "AP Student Performance: Participation Rate" } %></th>
+      <th class="span1"><%= sort_link @search, :ap_student_performance_participant_passing_rate, "PPR", {}, data: { toggle: :tooltip, placement: :top, title: "AP Student Performance: Participant Passing Rate" } %></th>
+      <th class="span1"><%= sort_link @search, :ap_student_performance_exam_per_test_taker, "EPT", {}, data: { toggle: :tooltip, placement: :top, title: "AP Student Performance: Exam Per Test Taker" } %></th>
+      <th class="span1"><%= sort_link @search, :ap_student_performance_exam_pass_rate, "EPR", {}, data: { toggle: :tooltip, placement: :top, title: "AP Student Performance: Exam Pass Rate" } %></th>
       <th><%= sort_link @search, :created_at, "Created", {}, data: { toggle: :tooltip, placement: :top, title: "Created At" } %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <th class="span2"><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
     <tr>
     <%= search_form_for @search do |f| %>
-      <th><%= f.text_field :state_cont, placeholder: "contains" %></th>
+      <th><%= f.select :state_eq, us_states, prompt: :blank %></th>
       <th><%= f.collection_select :district_id_eq, District.all, :id, :name, prompt: :blank %></th>
       <th><%= f.text_field :name_cont, placeholder: "contains" %></th>
       <th>
@@ -89,8 +89,7 @@
         <%= f.number_field :total_economically_disadvantaged_lteq, placeholder: "<=" %>
       </th>
      <th>
-        <%= f.number_field :receives_title_i_funding_gteq, placeholder: ">=" %>
-        <%= f.number_field :receives_title_i_funding_lteq, placeholder: "<=" %>
+        <%= f.select :receives_title_i_funding_eq, [true, false], prompt: :blank %>
       </th>
      <th>
         <%= f.number_field :ap_student_performance_participation_rate_gteq, placeholder: ">=" %>
@@ -108,12 +107,10 @@
         <%= f.number_field :ap_student_performance_exam_pass_rate_gteq, placeholder: ">=" %>
         <%= f.number_field :ap_student_performance_exam_pass_rate_lteq, placeholder: "<=" %>
       </th>
-     <th>
-        <%= link_to "Clear", schools_path, class: "btn btn-warning" %>
-      </th>
-     
+     <th></th>
      <th>
         <%= f.submit "Search", class: "btn btn-info" %>
+        <%= link_to "Clear", schools_path, class: "btn btn-warning" %>
       </th>
 
     <% end %><!-- end search form -->

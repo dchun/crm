@@ -15,7 +15,7 @@
       <th><%= sort_link @search, :school_name, "School" %></th>
       <th><%= sort_link @search, :updated_at, "Updated" %></th>
       <th><%= sort_link @search, :created_at, "Created" %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <th class="span2"><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
     <tr>
     <%= search_form_for @search do |f| %>

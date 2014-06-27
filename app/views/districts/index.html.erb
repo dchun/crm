@@ -7,17 +7,17 @@
     <tr>
       <th><%= sort_link @search, :state, "State", {}, data: { toggle: :tooltip, placement: :top, title: "State" } %></th>
       <th><%= sort_link @search, :name, "Name", {}, data: { toggle: :tooltip, placement: :top, title: "District Name" } %></th>
-      <th><%= sort_link @search, :college_readiness_score, "CRS", {}, data: { toggle: :tooltip, placement: :top, title: "College Readiness Score" } %></th>
-      <th><%= sort_link @search, :tested_ap, "TAP", {}, data: { toggle: :tooltip, placement: :top, title: "% Tested AP" } %></th>
-      <th><%= sort_link @search, :passed_ap, "PAP", {}, data: { toggle: :tooltip, placement: :top, title: "% Passed AP" } %></th>
-      <th><%= sort_link @search, :math_score, "MS", {}, data: { toggle: :tooltip, placement: :top, title: "Math Score" } %></th>
-      <th><%= sort_link @search, :math_proficient, "MP", {}, data: { toggle: :tooltip, placement: :top, title: "Math Proficient %" } %></th>
-      <th><%= sort_link @search, :math_not_proficient, "MnP", {}, data: { toggle: :tooltip, placement: :top, title: "Math Not Proficient %" } %></th>
-      <th><%= sort_link @search, :reading_score, "RS", {}, data: { toggle: :tooltip, placement: :top, title: "Reading Score" } %></th>
-      <th><%= sort_link @search, :reading_proficient, "RP", {}, data: { toggle: :tooltip, placement: :top, title: "Reading Proficient %" } %></th>
-      <th><%= sort_link @search, :reading_not_proficient, "RnP", {}, data: { toggle: :tooltip, placement: :top, title: "Reading Not Proficient %" } %></th>
+      <th class="span1"><%= sort_link @search, :college_readiness_score, "CRS", {}, data: { toggle: :tooltip, placement: :top, title: "College Readiness Score" } %></th>
+      <th class="span1"><%= sort_link @search, :tested_ap, "TAP", {}, data: { toggle: :tooltip, placement: :top, title: "% Tested AP" } %></th>
+      <th class="span1"><%= sort_link @search, :passed_ap, "PAP", {}, data: { toggle: :tooltip, placement: :top, title: "% Passed AP" } %></th>
+      <th class="span1"><%= sort_link @search, :math_score, "MS", {}, data: { toggle: :tooltip, placement: :top, title: "Math Score" } %></th>
+      <th class="span1"><%= sort_link @search, :math_proficient, "MP", {}, data: { toggle: :tooltip, placement: :top, title: "Math Proficient %" } %></th>
+      <th class="span1"><%= sort_link @search, :math_not_proficient, "MnP", {}, data: { toggle: :tooltip, placement: :top, title: "Math Not Proficient %" } %></th>
+      <th class="span1"><%= sort_link @search, :reading_score, "RS", {}, data: { toggle: :tooltip, placement: :top, title: "Reading Score" } %></th>
+      <th class="span1"><%= sort_link @search, :reading_proficient, "RP", {}, data: { toggle: :tooltip, placement: :top, title: "Reading Proficient %" } %></th>
+      <th class="span1"><%= sort_link @search, :reading_not_proficient, "RnP", {}, data: { toggle: :tooltip, placement: :top, title: "Reading Not Proficient %" } %></th>
       <th><%= sort_link @search, :created_at, "Created", {}, data: { toggle: :tooltip, placement: :top, title: "State" } %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <th class="span2"><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
     <tr>
     <%= search_form_for @search do |f| %>
@@ -58,6 +58,11 @@
       <th>
         <%= f.number_field :reading_not_proficient_gteq, placeholder: ">=" %>
         <%= f.number_field :reading_not_proficient_lteq, placeholder: "<=" %>
+      </th>
+      <th></th>
+      <th>
+        <%= f.submit "Search", class: "btn btn-info" %>
+        <%= link_to "Clear", contacts_path, class: "btn btn-warning" %>
       </th>
     <% end %>
     </tr>

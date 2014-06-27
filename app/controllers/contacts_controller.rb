@@ -6,7 +6,11 @@ class ContactsController < ApplicationController
   # GET /contacts.json
   def index
     @search = Contact.search(params[:q])
-    @contacts = @search.result.page(params[:page]).per(2)
+    if current_user.role = "Contact Editing"
+      @contacts = @search.result.where(complete: false).page(params[:page]).per(10)
+    else
+      @contacts = @search.result.page(params[:page]).per(50)
+    end
   end
 
   # GET /contacts/1
