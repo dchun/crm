@@ -27,7 +27,7 @@
       <th><%= f.collection_select :role_eq, AcceptableContactRole.all, :role, :role, prompt: :blank %></th>
       <th class="span3"><%= f.collection_select :school_id_eq, School.all, :id, :name, prompt: :blank %></th>
       <th></th>
-      <th></th>
+      <th><%= link_to "Clear", contacts_path, class: "btn btn-warning" %></th>
       <th><%= f.submit "Search", class: "btn btn-info" %></th>
     <% end %><!-- end search form -->
 
@@ -64,6 +64,8 @@
   </tbody>
 </table>
 
+<%= paginate @contacts, :theme => 'twitter-bootstrap' %>
+
 <% if can? :create, Contact %>
   <%= link_to t('.new', :default => t("helpers.links.new")), new_contact_path, :class => 'btn btn-primary' %>
 <% end %>
@@ -74,4 +76,3 @@
   <%= link_to "Positions", acceptable_contact_positions_path, class: "btn btn-default" %>
   <%= link_to "Roles", acceptable_contact_roles_path, class: "btn btn-default" %>
 <% end %>
-

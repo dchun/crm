@@ -6,7 +6,7 @@ class ContactsController < ApplicationController
   # GET /contacts.json
   def index
     @search = Contact.search(params[:q])
-    @contacts = @search.result
+    @contacts = @search.result.page(params[:page]).per(2)
   end
 
   # GET /contacts/1

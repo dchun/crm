@@ -49,6 +49,8 @@
   </tbody>
 </table>
 
+<%= paginate @districts, :theme => 'twitter-bootstrap' %>
+
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_district_path,
             :class => 'btn btn-primary' %>

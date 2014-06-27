@@ -17,5 +17,10 @@ th input {
 }
 
 th .btn {
-	margin-bottom: 7px;
+	margin-bottom: 6px;
+}
+
+footer {
+	margin-top: 20px;
+	text-align: center;
 }

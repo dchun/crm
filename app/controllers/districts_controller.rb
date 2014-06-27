@@ -6,7 +6,7 @@ class DistrictsController < ApplicationController
   # GET /districts.json
   def index
     @search = District.search(params[:q])
-    @districts = @search.result
+    @districts = @search.result.page(params[:page]).per(10)
   end
 
   # GET /districts/1

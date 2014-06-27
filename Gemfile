@@ -19,8 +19,7 @@ gem 'cancan', '~> 1.6.10' # For role based authroization
 gem 'roo' # For excel processing
 gem 'ransack', '~> 1.2.3' # For data filtering
 gem 'kaminari' # Table pagination
-gem 'kaminari-bootstrap', '~> 0.1.3'
-
+gem 'bootstrap-kaminari-views'
 
 group :production do
   gem 'rails_12factor' # Asset precompiler for heroku
