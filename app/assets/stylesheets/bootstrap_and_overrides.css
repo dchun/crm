@@ -11,13 +11,10 @@ dd {
 }
 
 th select,
-th input {
-	min-width: 30px;
+th input[type="text"],
+th input[type="number"] {
 	width: 100%;
-}
-
-th .btn {
-	margin-bottom: 6px;
+	margin-bottom: 0px;
 }
 
 footer {

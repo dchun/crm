@@ -30,6 +30,94 @@
       <th><%= sort_link @search, :created_at, "Created", {}, data: { toggle: :tooltip, placement: :top, title: "Created At" } %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
+    <tr>
+    <%= search_form_for @search do |f| %>
+      <th><%= f.text_field :state_cont, placeholder: "contains" %></th>
+      <th><%= f.collection_select :district_id_eq, District.all, :id, :name, prompt: :blank %></th>
+      <th><%= f.text_field :name_cont, placeholder: "contains" %></th>
+      <th>
+        <%= f.number_field :state_rank_gteq, placeholder: ">=" %>
+        <%= f.number_field :state_rank_lteq, placeholder: "<=" %>
+      </th>
+      <th>
+        <%= f.number_field :national_rank_gteq, placeholder: ">=" %>
+        <%= f.number_field :national_rank_lteq, placeholder: "<=" %>
+      </th>
+      <th>
+        <%= f.number_field :college_readiness_score_gteq, placeholder: ">=", step: 0.1 %>
+        <%= f.number_field :college_readiness_score_lteq, placeholder: "<=", step: 0.1 %>
+      </th>
+      <th>
+        <%= f.number_field :tested_ap_ib_gteq, placeholder: ">=" %>
+        <%= f.number_field :tested_ap_ib_lteq, placeholder: "<=" %>
+      </th>
+      <th>
+        <%= f.number_field :pass_ap_ib_gteq, placeholder: ">=" %>
+        <%= f.number_field :pass_ap_ib_lteq, placeholder: "<=" %>
+      </th>
+      <th>
+        <%= f.number_field :math_score_gteq, placeholder: ">=", step: 0.1 %>
+        <%= f.number_field :math_score_lteq, placeholder: "<=", step: 0.1 %>
+      </th>
+      <th>
+        <%= f.number_field :math_proficient_gteq, placeholder: ">=" %>
+        <%= f.number_field :math_proficient_lteq, placeholder: "<=" %>
+      </th>
+      <th>
+        <%= f.number_field :math_not_proficient_gteq, placeholder: ">=" %>
+        <%= f.number_field :math_not_proficient_lteq, placeholder: "<=" %>
+      </th>
+      <th>
+        <%= f.number_field :reading_score_gteq, placeholder: ">=", step: 0.1 %>
+        <%= f.number_field :reading_score_lteq, placeholder: "<=", step: 0.1 %>
+      </th>
+      <th>
+        <%= f.number_field :reading_proficient_gteq, placeholder: ">=" %>
+        <%= f.number_field :reading_proficient_lteq, placeholder: "<=" %>
+      </th>
+     <th>
+        <%= f.number_field :reading_not_proficient_gteq, placeholder: ">=" %>
+        <%= f.number_field :reading_not_proficient_lteq, placeholder: "<=" %>
+      </th>
+     <th><%= f.text_field :student_teacher_ratio_cont, placeholder: "contains" %></th>
+     <th>
+        <%= f.number_field :total_enrollment_gteq, placeholder: ">=" %>
+        <%= f.number_field :total_enrollment_lteq, placeholder: "<=" %>
+      </th>
+     <th>
+        <%= f.number_field :total_economically_disadvantaged_gteq, placeholder: ">=" %>
+        <%= f.number_field :total_economically_disadvantaged_lteq, placeholder: "<=" %>
+      </th>
+     <th>
+        <%= f.number_field :receives_title_i_funding_gteq, placeholder: ">=" %>
+        <%= f.number_field :receives_title_i_funding_lteq, placeholder: "<=" %>
+      </th>
+     <th>
+        <%= f.number_field :ap_student_performance_participation_rate_gteq, placeholder: ">=" %>
+        <%= f.number_field :ap_student_performance_participation_rate_lteq, placeholder: "<=" %>
+      </th>
+     <th>
+        <%= f.number_field :ap_student_performance_participant_passing_rate_gteq, placeholder: ">=" %>
+        <%= f.number_field :ap_student_performance_participant_passing_rate_lteq, placeholder: "<=" %>
+      </th>
+     <th>
+        <%= f.number_field :ap_student_performance_exam_per_test_taker_gteq, placeholder: ">=", step: 0.1 %>
+        <%= f.number_field :ap_student_performance_exam_per_test_taker_lteq, placeholder: "<=", step: 0.1 %>
+      </th>
+     <th>
+        <%= f.number_field :ap_student_performance_exam_pass_rate_gteq, placeholder: ">=" %>
+        <%= f.number_field :ap_student_performance_exam_pass_rate_lteq, placeholder: "<=" %>
+      </th>
+     <th>
+        <%= link_to "Clear", schools_path, class: "btn btn-warning" %>
+      </th>
+     
+     <th>
+        <%= f.submit "Search", class: "btn btn-info" %>
+      </th>
+
+    <% end %><!-- end search form -->
+    </tr>
   </thead>
   <tbody>
     <% @schools.each do |school| %>

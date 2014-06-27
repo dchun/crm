@@ -19,6 +19,48 @@
       <th><%= sort_link @search, :created_at, "Created", {}, data: { toggle: :tooltip, placement: :top, title: "State" } %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
+    <tr>
+    <%= search_form_for @search do |f| %>
+      <th><%= f.text_field :state_cont, placeholder: "contains" %></th>
+      <th><%= f.text_field :name_cont, placeholder: "contains" %></th>
+      <th>
+        <%= f.number_field :college_readiness_score_gteq, placeholder: ">=", step: 0.1 %>
+        <%= f.number_field :college_readiness_score_lteq, placeholder: "<=", step: 0.1 %>
+      </th>      
+      <th>
+        <%= f.number_field :tested_ap_gteq, placeholder: ">=" %>
+        <%= f.number_field :tested_ap_lteq, placeholder: "<=" %>
+      </th>      
+      <th>
+        <%= f.number_field :passed_ap_gteq, placeholder: ">=" %>
+        <%= f.number_field :passed_ap_lteq, placeholder: "<=" %>
+      </th>      
+      <th>
+        <%= f.number_field :math_score_gteq, placeholder: ">=", step: 0.1 %>
+        <%= f.number_field :math_score_lteq, placeholder: "<=", step: 0.1 %>
+      </th>      
+      <th>
+        <%= f.number_field :math_proficient_gteq, placeholder: ">=" %>
+        <%= f.number_field :math_proficient_lteq, placeholder: "<=" %>
+      </th>      
+      <th>
+        <%= f.number_field :math_not_proficient_gteq, placeholder: ">=" %>
+        <%= f.number_field :math_not_proficient_lteq, placeholder: "<=" %>
+      </th>      
+      <th>
+        <%= f.number_field :reading_score_gteq, placeholder: ">=", step: 0.1 %>
+        <%= f.number_field :reading_score_lteq, placeholder: "<=", step: 0.1 %>
+      </th>      
+      <th>
+        <%= f.number_field :reading_proficient_gteq, placeholder: ">=" %>
+        <%= f.number_field :reading_proficient_lteq, placeholder: "<=" %>
+      </th>      
+      <th>
+        <%= f.number_field :reading_not_proficient_gteq, placeholder: ">=" %>
+        <%= f.number_field :reading_not_proficient_lteq, placeholder: "<=" %>
+      </th>
+    <% end %>
+    </tr>
   </thead>
   <tbody>
     <% @districts.each do |district| %>
