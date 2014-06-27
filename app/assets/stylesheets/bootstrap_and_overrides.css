@@ -5,9 +5,23 @@
   To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
   =require twitter-bootstrap-static/fontawesome
   */
+@media (min-width: 767px) {
+	dd {
+		height: 20px;
+		margin-left: 420px !important;
+	}
 
-dd {
-	height: 20px;
+	dt {
+		width: 400px !important;
+	}
+
+	.form-horizontal .control-label {
+		width: 300px;
+	}
+
+	.form-horizontal .controls {
+		margin-left: 320px;
+	}
 }
 
 th select,

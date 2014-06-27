@@ -2,7 +2,7 @@ class School < ActiveRecord::Base
   belongs_to :district
 
   validates_presence_of :name
-  validates_presence_of :state_rank
+  validates_presence_of :district
   validate :similar_school_names
 
   def similar_school_names

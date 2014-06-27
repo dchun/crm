@@ -8,7 +8,7 @@ class Ability
     elsif user.role == 'Contact Editing' 
       can [:read, :update], Contact, :complete => false
     elsif user.role == 'Data Entry'
-      can [:read, :create], Contact
+      can :create, Contact
     end
   end
 end

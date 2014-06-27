@@ -2,6 +2,11 @@ class Contact < ActiveRecord::Base
   belongs_to :school
 
   validates_presence_of :fname
+  validates_presence_of :email
+  validates_presence_of :salutation
+  validates_presence_of :position
+  validates_presence_of :role
+  validates_presence_of :school
 
   validates_inclusion_of :salutation, in: :acceptable_salutation_list
   validates_inclusion_of :position, in: :acceptable_position_list
@@ -34,11 +39,11 @@ class Contact < ActiveRecord::Base
   end
 
   def school_full_match
-    School.find_by_name(self.school.name)
+    School.find_by_name(self.school.name) if self.school.present?
   end
 
   def school_first_downcase
-    s_name = self.school.name.split[0].downcase
+    s_name = self.school.name.split[0].downcase if self.school.present?
   end
 
   def school_first_downcase_list

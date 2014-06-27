@@ -4,60 +4,60 @@
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @school.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:state_rank) %>:</strong></dt>
-  <dd><%= @school.state_rank %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:national_rank) %>:</strong></dt>
-  <dd><%= @school.national_rank %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:college_readiness_score) %>:</strong></dt>
-  <dd><%= @school.college_readiness_score %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:tested_ap_ib) %>:</strong></dt>
-  <dd><%= @school.tested_ap_ib %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:pass_ap_ib) %>:</strong></dt>
-  <dd><%= @school.pass_ap_ib %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:math_score) %>:</strong></dt>
-  <dd><%= @school.math_score %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:math_proficient) %>:</strong></dt>
-  <dd><%= @school.math_proficient %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:math_not_proficient) %>:</strong></dt>
-  <dd><%= @school.math_not_proficient %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:reading_score) %>:</strong></dt>
-  <dd><%= @school.reading_score %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:reading_proficient) %>:</strong></dt>
-  <dd><%= @school.reading_proficient %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:reading_not_proficient) %>:</strong></dt>
-  <dd><%= @school.reading_not_proficient %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:student_teacher_ratio) %>:</strong></dt>
-  <dd><%= @school.student_teacher_ratio %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:street_address) %>:</strong></dt>
-  <dd><%= @school.street_address %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:city) %>:</strong></dt>
-  <dd><%= @school.city %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:state) %>:</strong></dt>
+  <dt><strong>State</strong></dt>
   <dd><%= @school.state %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:zip) %>:</strong></dt>
+  <dt><strong>District</strong></dt>
+  <dd><%= @school.district.name if @school.district.present? %></dd>
+  <dt><strong>School Name</strong></dt>
+  <dd><%= @school.name %></dd>
+  <dt><strong>State Rank</strong></dt>
+  <dd><%= @school.state_rank %></dd>
+  <dt><strong>National Rank</strong></dt>
+  <dd><%= @school.national_rank %></dd>
+  <dt><strong>College readiness Score</strong></dt>
+  <dd><%= @school.college_readiness_score %></dd>
+  <dt><strong>% Tested AP/IB</strong></dt>
+  <dd><%= @school.tested_ap_ib %></dd>
+  <dt><strong>% Passed AP/IB</strong></dt>
+  <dd><%= @school.pass_ap_ib %></dd>
+  <dt><strong>Math Score</strong></dt>
+  <dd><%= @school.math_score %></dd>
+  <dt><strong>Math Proficient %</strong></dt>
+  <dd><%= @school.math_proficient %></dd>
+  <dt><strong>Math Not Proficient %</strong></dt>
+  <dd><%= @school.math_not_proficient %></dd>
+  <dt><strong>Reading Score</strong></dt>
+  <dd><%= @school.reading_score %></dd>
+  <dt><strong>Reading Proficient %</strong></dt>
+  <dd><%= @school.reading_proficient %></dd>
+  <dt><strong>Reading not Proficient %</strong></dt>
+  <dd><%= @school.reading_not_proficient %></dd>
+  <dt><strong>Student/Teacher Ratio</strong></dt>
+  <dd><%= @school.student_teacher_ratio %></dd>
+  <dt><strong>Street Address</strong></dt>
+  <dd><%= @school.street_address %></dd>
+  <dt><strong>City</strong></dt>
+  <dd><%= @school.city %></dd>
+  <dt><strong>Zip</strong></dt>
   <dd><%= @school.zip %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:latitude) %>:</strong></dt>
+  <dt><strong>Latitiude</strong></dt>
   <dd><%= @school.latitude %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:longitude) %>:</strong></dt>
+  <dt><strong>Longitude</strong></dt>
   <dd><%= @school.longitude %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:total_enrollment) %>:</strong></dt>
+  <dt><strong>Total Enrollment</strong></dt>
   <dd><%= @school.total_enrollment %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:total_economically_disadvantaged) %>:</strong></dt>
+  <dt><strong>Total Economically Disadvantaged</strong></dt>
   <dd><%= @school.total_economically_disadvantaged %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:receives_title_i_funding) %>:</strong></dt>
+  <dt><strong>Receives Title I Funding</strong></dt>
   <dd><%= @school.receives_title_i_funding %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:ap_student_performance_participation_rate) %>:</strong></dt>
+  <dt><strong>AP Student Performance Participation Rate</strong></dt>
   <dd><%= @school.ap_student_performance_participation_rate %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:ap_student_performance_participant_passing_rate) %>:</strong></dt>
+  <dt><strong>AP Student Performance Participation Passing Rate</strong></dt>
   <dd><%= @school.ap_student_performance_participant_passing_rate %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:ap_student_performance_exam_per_test_taker) %>:</strong></dt>
+  <dt><strong>AP Student Performance Exam Per Test Taker</strong></dt>
   <dd><%= @school.ap_student_performance_exam_per_test_taker %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:ap_student_performance_exam_pass_rate) %>:</strong></dt>
+  <dt><strong>AP Student Performance Exam Pass Rate</strong></dt>
   <dd><%= @school.ap_student_performance_exam_pass_rate %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:district_id) %>:</strong></dt>
-  <dd><%= @school.district_id %></dd>
 </dl>
 
 <div class="form-actions">

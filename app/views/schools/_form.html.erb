@@ -1,6 +1,6 @@
 <%= form_for @school, :html => { :class => 'form-horizontal' } do |f| %>
   <% if @school.errors.any? %>
-    <div id="error_explanation">
+    <div class="alert fade in alert-error"><button class="close" data-dismiss="alert">×</button>
       <p><%= pluralize(@school.errors.count, "error") %> prohibited this school from being saved:</p>
 
       <ul>
@@ -10,167 +10,168 @@
       </ul>
     </div>
   <% end %>
+  
+  <div class="control-group">
+    <%= f.label :district_id, "District", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.collection_select :district_id, District.order(:name), :id, :name, prompt: :blank %>    
+    </div>
+  </div>
 
   <div class="control-group">
-    <%= f.label :name, :class => 'control-label' %>
+    <%= f.label :name, "School Name", :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :name, :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :state_rank, :class => 'control-label' %>
+    <%= f.label :state_rank, "State Rank", :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :state_rank, :class => 'text_field' %>
+      <%= f.number_field :state_rank, :class => 'number_field', step: 0.1 %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :national_rank, :class => 'control-label' %>
+    <%= f.label :national_rank, "National Rank", :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :national_rank, :class => 'text_field' %>
+      <%= f.number_field :national_rank, :class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :college_readiness_score, :class => 'control-label' %>
+    <%= f.label :college_readiness_score, "College Readiness Score", :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :college_readiness_score, :class => 'text_field' %>
+      <%= f.number_field :college_readiness_score, :class => 'number_field', step: 0.1 %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :tested_ap_ib, :class => 'control-label' %>
+    <%= f.label :tested_ap_ib, "% Tested AP/IB", :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :tested_ap_ib, :class => 'text_field' %>
+      <%= f.number_field :tested_ap_ib, :class => 'number_field', step: 0.1 %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :pass_ap_ib, :class => 'control-label' %>
+    <%= f.label :pass_ap_ib, "% Passed AP/IB", :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :pass_ap_ib, :class => 'text_field' %>
+      <%= f.number_field :pass_ap_ib, :class => 'numbder_field', step: 0.1 %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :math_score, :class => 'control-label' %>
+    <%= f.label :math_score, "Math Score", :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :math_score, :class => 'text_field' %>
+      <%= f.number_field :math_score, :class => 'number_field', step: 0.1 %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :math_proficient, :class => 'control-label' %>
+    <%= f.label :math_proficient, "Math Proficient %", :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :math_proficient, :class => 'text_field' %>
+      <%= f.number_field :math_proficient, :class => 'number_field', step: 0.1 %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :math_not_proficient, :class => 'control-label' %>
+    <%= f.label :math_not_proficient, "Math Not Proficient %", :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :math_not_proficient, :class => 'text_field' %>
+      <%= f.number_field :math_not_proficient, :class => 'number_field', step: 0.1 %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :reading_score, :class => 'control-label' %>
+    <%= f.label :reading_score, "Reading Score", :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :reading_score, :class => 'text_field' %>
+      <%= f.number_field :reading_score, :class => 'number-field', step: 0.1 %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :reading_proficient, :class => 'control-label' %>
+    <%= f.label :reading_proficient, "Reading Proficient %", :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :reading_proficient, :class => 'text_field' %>
+      <%= f.number_field :reading_proficient, :class => 'number_field', step: 0.1 %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :reading_not_proficient, :class => 'control-label' %>
+    <%= f.label :reading_not_proficient, "Reading Not Proficient %", :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :reading_not_proficient, :class => 'text_field' %>
+      <%= f.number_field :reading_not_proficient, :class => 'number_field', step: 0.1 %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :student_teacher_ratio, :class => 'control-label' %>
+    <%= f.label :student_teacher_ratio, "Student/Teacher Ratio", :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :student_teacher_ratio, :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :street_address, :class => 'control-label' %>
+    <%= f.label :street_address, "Street Address", :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :street_address, :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :city, :class => 'control-label' %>
+    <%= f.label :city, "City", :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :city, :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :state, :class => 'control-label' %>
+    <%= f.label :state, "State", :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :state, :class => 'text_field' %>
+      <%= f.select :state, us_states, prompt: :blank %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :zip, :class => 'control-label' %>
+    <%= f.label :zip, "Zip Code", :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :zip, :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :latitude, :class => 'control-label' %>
+    <%= f.label :latitude, "Latitude", :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :latitude, :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :longitude, :class => 'control-label' %>
+    <%= f.label :longitude, "Longitude", :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :longitude, :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :total_enrollment, :class => 'control-label' %>
+    <%= f.label :total_enrollment, "Total Enrollment", :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :total_enrollment, :class => 'text_field' %>
+      <%= f.number_field :total_enrollment, :class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :total_economically_disadvantaged, :class => 'control-label' %>
+    <%= f.label :total_economically_disadvantaged, "Total Economically Disadvantaged", :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :total_economically_disadvantaged, :class => 'text_field' %>
+      <%= f.number_field :total_economically_disadvantaged, :class => 'number_field', step: 0.1 %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :receives_title_i_funding, :class => 'control-label' %>
+    <%= f.label :receives_title_i_funding, "Receives Title I Funding", :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :receives_title_i_funding, :class => 'text_field' %>
+      <%= f.select :receives_title_i_funding, [['True', true], ['False', false]], prompt: :blank %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :ap_student_performance_participation_rate, :class => 'control-label' %>
+    <%= f.label :ap_student_performance_participation_rate, "AP Student Participation Rate", :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :ap_student_performance_participation_rate, :class => 'text_field' %>
+      <%= f.number_field :ap_student_performance_participation_rate, :class => 'number_field', step: 0.1 %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :ap_student_performance_participant_passing_rate, :class => 'control-label' %>
+    <%= f.label :ap_student_performance_participant_passing_rate, "AP Student performance Passing Rate", :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :ap_student_performance_participant_passing_rate, :class => 'text_field' %>
+      <%= f.number_field :ap_student_performance_participant_passing_rate, :class => 'number_field', step: 0.1 %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :ap_student_performance_exam_per_test_taker, :class => 'control-label' %>
+    <%= f.label :ap_student_performance_exam_per_test_taker, "AP Student performance Exam Per Test Taker", :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :ap_student_performance_exam_per_test_taker, :class => 'text_field' %>
+      <%= f.number_field :ap_student_performance_exam_per_test_taker, :class => 'number_field', step: 0.1 %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :ap_student_performance_exam_pass_rate, :class => 'control-label' %>
+    <%= f.label :ap_student_performance_exam_pass_rate, "AP Student Performance Exam Pass Rate", :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :ap_student_performance_exam_pass_rate, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :district_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :district_id, :class => 'text_field' %>
+      <%= f.number_field :ap_student_performance_exam_pass_rate, :class => 'number_field', step: 0.1 %>
     </div>
   </div>
 

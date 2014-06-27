@@ -4,22 +4,20 @@
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:fname) %>:</strong></dt>
+  <dt><strong>First Name</strong></dt>
   <dd> <%= @contact.fname %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:lname) %>:</strong></dt>
+  <dt><strong>Last Name</strong></dt>
   <dd> <%= @contact.lname %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
+  <dt><strong>Email</strong></dt>
   <dd> <%= @contact.email %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:salutation) %>:</strong></dt>
+  <dt><strong>Salutation</strong></dt>
   <dd> <%= @contact.salutation %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:position) %>:</strong></dt>
+  <dt><strong>Position</strong></dt>
   <dd> <%= @contact.position %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:role) %>:</strong></dt>
+  <dt><strong>Role</strong></dt>
   <dd> <%= @contact.role %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:complete) %>:</strong></dt>
-  <dd> <%= @contact.complete %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:school_id) %>:</strong></dt>
-  <dd> <%= @contact.school_id %></dd>
+  <dt><strong>School</strong></dt>
+  <dd> <%= @contact.school.name if @contact.school.present? %></dd>
 </dl>
 
 <div class="form-actions">
