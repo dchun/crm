@@ -17,6 +17,10 @@ gem 'devise', '~> 3.2.4' # For user authentication
 gem 'geocoder', '~> 1.2.2' # For location based filtering
 gem 'cancan', '~> 1.6.10' # For role based authroization
 gem 'roo' # For excel processing
+gem 'ransack', '~> 1.2.3' # For data filtering
+gem 'kaminari' # Table pagination
+gem 'kaminari-bootstrap', '~> 0.1.3'
+
 
 group :production do
   gem 'rails_12factor' # Asset precompiler for heroku

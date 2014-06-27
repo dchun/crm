@@ -1,10 +1,12 @@
 class ContactsController < ApplicationController
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
+    
   # GET /contacts
   # GET /contacts.json
   def index
-    @contacts = Contact.all
+    @search = Contact.search(params[:q])
+    @contacts = @search.result
   end
 
   # GET /contacts/1

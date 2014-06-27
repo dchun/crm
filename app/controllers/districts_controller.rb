@@ -1,10 +1,12 @@
 class DistrictsController < ApplicationController
   before_action :set_district, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
+  
   # GET /districts
   # GET /districts.json
   def index
-    @districts = District.all
+    @search = District.search(params[:q])
+    @districts = @search.result
   end
 
   # GET /districts/1

@@ -1,10 +1,12 @@
 class SchoolsController < ApplicationController
   before_action :set_school, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
+    
   # GET /schools
   # GET /schools.json
   def index
-    @schools = School.all
+    @search = School.search(params[:q])
+    @schools = @search.result
   end
 
   # GET /schools/1

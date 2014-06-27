@@ -5,70 +5,58 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:state_rank) %></th>
-      <th><%= model_class.human_attribute_name(:national_rank) %></th>
-      <th><%= model_class.human_attribute_name(:college_readiness_score) %></th>
-      <th><%= model_class.human_attribute_name(:tested_ap_ib) %></th>
-      <th><%= model_class.human_attribute_name(:pass_ap_ib) %></th>
-      <th><%= model_class.human_attribute_name(:math_score) %></th>
-      <th><%= model_class.human_attribute_name(:math_proficient) %></th>
-      <th><%= model_class.human_attribute_name(:math_not_proficient) %></th>
-      <th><%= model_class.human_attribute_name(:reading_score) %></th>
-      <th><%= model_class.human_attribute_name(:reading_proficient) %></th>
-      <th><%= model_class.human_attribute_name(:reading_not_proficient) %></th>
-      <th><%= model_class.human_attribute_name(:student_teacher_ratio) %></th>
-      <th><%= model_class.human_attribute_name(:street_address) %></th>
-      <th><%= model_class.human_attribute_name(:city) %></th>
-      <th><%= model_class.human_attribute_name(:state) %></th>
-      <th><%= model_class.human_attribute_name(:zip) %></th>
-      <th><%= model_class.human_attribute_name(:latitude) %></th>
-      <th><%= model_class.human_attribute_name(:longitude) %></th>
-      <th><%= model_class.human_attribute_name(:total_enrollment) %></th>
-      <th><%= model_class.human_attribute_name(:total_economically_disadvantaged) %></th>
-      <th><%= model_class.human_attribute_name(:receives_title_i_funding) %></th>
-      <th><%= model_class.human_attribute_name(:ap_student_performance_participation_rate) %></th>
-      <th><%= model_class.human_attribute_name(:ap_student_performance_participant_passing_rate) %></th>
-      <th><%= model_class.human_attribute_name(:ap_student_performance_exam_per_test_taker) %></th>
-      <th><%= model_class.human_attribute_name(:ap_student_performance_exam_pass_rate) %></th>
-      <th><%= model_class.human_attribute_name(:district_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%= sort_link @search, :state, "State", {}, data: { toggle: :tooltip, placement: :top, title: "State" } %></th>
+      <th><%= sort_link @search, :district_name, "District", {}, data: { toggle: :tooltip, placement: :top, title: "District Name" } %></th> 
+      <th><%= sort_link @search, :name, "Name", {}, data: { toggle: :tooltip, placement: :top, title: "School Name" } %></th>
+      <th><%= sort_link @search, :state_rank, "SR", {}, data: { toggle: :tooltip, placement: :top, title: "State Rank" } %></th>
+      <th><%= sort_link @search, :national_rank, "NR", {}, data: { toggle: :tooltip, placement: :top, title: "National Rank" } %></th>
+      <th><%= sort_link @search, :college_readiness_score, "CRS", {}, data: { toggle: :tooltip, placement: :top, title: "College Readiness Score" } %></th>
+      <th><%= sort_link @search, :tested_ap_ib, "TAPIB", {}, data: { toggle: :tooltip, placement: :top, title: "% Tested AP/IB" } %></th>
+      <th><%= sort_link @search, :pass_ap_ib, "PAPIB", {}, data: { toggle: :tooltip, placement: :top, title: "% Passed AP/IB" } %></th>
+      <th><%= sort_link @search, :math_score, "MS", {}, data: { toggle: :tooltip, placement: :top, title: "Math Score" } %></th>
+      <th><%= sort_link @search, :math_proficient, "MP", {}, data: { toggle: :tooltip, placement: :top, title: "Math Proficient %" } %></th>
+      <th><%= sort_link @search, :math_not_proficient, "MnP", {}, data: { toggle: :tooltip, placement: :top, title: "Math Not Proficient %" } %></th>
+      <th><%= sort_link @search, :reading_score, "RS", {}, data: { toggle: :tooltip, placement: :top, title: "Reading Score" } %></th>
+      <th><%= sort_link @search, :reading_proficient, "RP", {}, data: { toggle: :tooltip, placement: :top, title: "Reading Proficient %" } %></th>
+      <th><%= sort_link @search, :reading_not_proficient, "RnP", {}, data: { toggle: :tooltip, placement: :top, title: "Reading Not Proficient %" } %></th>
+      <th><%= sort_link @search, :student_teacher_ratio, "STR", {}, data: { toggle: :tooltip, placement: :top, title: "Student/Teacher Ratio" } %></th>
+      <th><%= sort_link @search, :total_enrollment, "TE", {}, data: { toggle: :tooltip, placement: :top, title: "Total Enrollment" } %></th>
+      <th><%= sort_link @search, :total_economically_disadvantaged, "TED", {}, data: { toggle: :tooltip, placement: :top, title: "Total Economically Disadvantaged" } %></th>
+      <th><%= sort_link @search, :receives_title_i_funding, "RTIF", {}, data: { toggle: :tooltip, placement: :top, title: "Receives Title I Funding" } %></th>
+      <th><%= sort_link @search, :ap_student_performance_participation_rate, "PR", {}, data: { toggle: :tooltip, placement: :top, title: "AP Student Performance: Participation Rate" } %></th>
+      <th><%= sort_link @search, :ap_student_performance_participant_passing_rate, "PPR", {}, data: { toggle: :tooltip, placement: :top, title: "AP Student Performance: Participant Passing Rate" } %></th>
+      <th><%= sort_link @search, :ap_student_performance_exam_per_test_taker, "EPTT", {}, data: { toggle: :tooltip, placement: :top, title: "AP Student Performance: Exam Per Test Taker" } %></th>
+      <th><%= sort_link @search, :ap_student_performance_exam_pass_rate, "EPR", {}, data: { toggle: :tooltip, placement: :top, title: "AP Student Performance: Exam Pass Rate" } %></th>
+      <th><%= sort_link @search, :created_at, "Created", {}, data: { toggle: :tooltip, placement: :top, title: "Created At" } %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @schools.each do |school| %>
       <tr>
-        <td><%= link_to school.id, school_path(school) %></td>
-        <td><%= school.name %></td>
+        <td><%= school.state %></td>
+        <td><%= school.district.name if school.district.present? %></td>
+        <td><%= link_to school.name, school_path(school) %></td>
         <td><%= school.state_rank %></td>
         <td><%= school.national_rank %></td>
         <td><%= school.college_readiness_score %></td>
-        <td><%= school.tested_ap_ib %></td>
-        <td><%= school.pass_ap_ib %></td>
+        <td><%= number_to_percentage school.tested_ap_ib, precision: 0 %></td>
+        <td><%= number_to_percentage school.pass_ap_ib, precision: 0 %></td>
         <td><%= school.math_score %></td>
-        <td><%= school.math_proficient %></td>
-        <td><%= school.math_not_proficient %></td>
+        <td><%= number_to_percentage school.math_proficient, precision: 0 %></td>
+        <td><%= number_to_percentage school.math_not_proficient, precision: 0 %></td>
         <td><%= school.reading_score %></td>
-        <td><%= school.reading_proficient %></td>
-        <td><%= school.reading_not_proficient %></td>
+        <td><%= number_to_percentage school.reading_proficient, precision: 0 %></td>
+        <td><%= number_to_percentage school.reading_not_proficient, precision: 0 %></td>
         <td><%= school.student_teacher_ratio %></td>
-        <td><%= school.street_address %></td>
-        <td><%= school.city %></td>
-        <td><%= school.state %></td>
-        <td><%= school.zip %></td>
-        <td><%= school.latitude %></td>
-        <td><%= school.longitude %></td>
         <td><%= school.total_enrollment %></td>
-        <td><%= school.total_economically_disadvantaged %></td>
+        <td><%= number_to_percentage school.total_economically_disadvantaged, precision: 0 %></td>
         <td><%= school.receives_title_i_funding %></td>
-        <td><%= school.ap_student_performance_participation_rate %></td>
-        <td><%= school.ap_student_performance_participant_passing_rate %></td>
+        <td><%= number_to_percentage school.ap_student_performance_participation_rate, precision: 0 %></td>
+        <td><%= number_to_percentage school.ap_student_performance_participant_passing_rate, precision: 0 %></td>
         <td><%= school.ap_student_performance_exam_per_test_taker %></td>
-        <td><%= school.ap_student_performance_exam_pass_rate %></td>
-        <td><%= school.district_id %></td>
-        <td><%=l school.created_at %></td>
+        <td><%= number_to_percentage school.ap_student_performance_exam_pass_rate, precision: 0 %></td>
+        <td><%= school.created_at.strftime("%B %d, %Y") %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_school_path(school), :class => 'btn btn-mini' %>

@@ -2,52 +2,76 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
-<table class="table table-striped">
+
+<table class="table table-striped table-hover">
   <thead>
     <tr>
-      <th><a href="#"><span>ID</span></a></th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Email</th>
-      <th>Salutation</th>
-      <th>Position</th>
-      <th>Role</th>
-      <th>School</th>
-      <th>Updated</th>
-      <th>Created</th>
+      <th><%= sort_link @search, :fname, "First Name" %></th>
+      <th><%= sort_link @search, :lname, "Last Name" %></th>
+      <th><%= sort_link @search, :email, "Email" %></th>
+      <th><%= sort_link @search, :salutation, "Salutation" %></th>
+      <th><%= sort_link @search, :position, "Position" %></th>
+      <th><%= sort_link @search, :role, "Role" %></th>
+      <th><%= sort_link @search, :school_name, "School" %></th>
+      <th><%= sort_link @search, :updated_at, "Updated" %></th>
+      <th><%= sort_link @search, :created_at, "Created" %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+    <tr>
+    <%= search_form_for @search do |f| %>
+      <th><%= f.text_field :fname_cont, placeholder: "contains" %></th>
+      <th><%= f.text_field :lname_cont, placeholder: "contains" %></th>
+      <th><%= f.text_field :email_cont, placeholder: "contains" %></th>
+      <th><%= f.collection_select :salutation_eq, AcceptableContactSalutation.all, :salutation, :salutation, prompt: :blank %></th>
+      <th><%= f.collection_select :position_eq, AcceptableContactPosition.all, :position, :position, prompt: :blank %></th>
+      <th><%= f.collection_select :role_eq, AcceptableContactRole.all, :role, :role, prompt: :blank %></th>
+      <th class="span3"><%= f.collection_select :school_id_eq, School.all, :id, :name, prompt: :blank %></th>
+      <th></th>
+      <th></th>
+      <th><%= f.submit "Search", class: "btn btn-info" %></th>
+    <% end %><!-- end search form -->
+
     </tr>
   </thead>
   <tbody>
     <% @contacts.each do |contact| %>
       <tr>
-        <td><%= link_to contact.id, contact_path(contact) %></td>
-        <td><%= contact.fname %></td>
+        <td><%= link_to contact.fname, contact_path(contact) %></td>
         <td><%= contact.lname %></td>
         <td><%= contact.email %></td>
         <td><%= contact.salutation %></td>
         <td><%= contact.position %></td>
         <td><%= contact.role %></td>
-        <td><%= contact.school.name %></td>
+        <td><%= contact.school.name if contact.school.present? %></td>
         <td><%= contact.updated_at.strftime("%B %d, %Y") %></td>
         <td><%= contact.created_at.strftime("%B %d, %Y") %></td>
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_contact_path(contact), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      contact_path(contact),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
+          <% if can? :update, contact %>
+            <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                        edit_contact_path(contact), :class => 'btn btn-mini' %>
+          <% end %>
+
+          <% if can? :destroy, contact %>
+            <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                        contact_path(contact),
+                        :method => :delete,
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :class => 'btn btn-mini btn-danger' %>
+          <% end %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_contact_path,
-            :class => 'btn btn-primary' %>
+<% if can? :create, Contact %>
+  <%= link_to t('.new', :default => t("helpers.links.new")), new_contact_path, :class => 'btn btn-primary' %>
+<% end %>
 
-<%= link_to "Import Contacts", new_contact_import_path, class: "btn btn-default" %>
+<% if can? :manage, :all %>
+  <%= link_to "Import Contacts", new_contact_import_path, class: "btn btn-success" %>
+  <%= link_to "Salutations", acceptable_contact_salutations_path, class: "btn btn-default" %>
+  <%= link_to "Positions", acceptable_contact_positions_path, class: "btn btn-default" %>
+  <%= link_to "Roles", acceptable_contact_roles_path, class: "btn btn-default" %>
+<% end %>
 

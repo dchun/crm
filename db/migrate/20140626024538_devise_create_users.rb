@@ -1,4 +1,10 @@
 class DeviseCreateUsers < ActiveRecord::Migration
+  def migrate(direction)
+    super
+    # Create a default user
+    User.create!(email: 'master@example.com', password: 'password', password_confirmation: 'password', role: 'Master') if direction == :up
+  end
+
   def change
     create_table(:users) do |t|
       ## Database authenticatable

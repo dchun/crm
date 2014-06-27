@@ -1,6 +1,6 @@
 Rails.application.routes.draw do 
   root 'dashboard#index'
-  devise_for :users, :controllers => {:registrations => "users/registrations"}
+  devise_for :users, :controllers => {:registrations => "devise/registrations"}
   resources :users
   resources :contacts
   resources :contact_imports

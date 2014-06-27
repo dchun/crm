@@ -1,4 +1,6 @@
 class ContactImportsController < ApplicationController
+  load_and_authorize_resource
+  
   def new
     @contact_import = ContactImport.new
   end

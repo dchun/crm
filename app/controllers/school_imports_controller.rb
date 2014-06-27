@@ -1,4 +1,6 @@
 class SchoolImportsController < ApplicationController
+  load_and_authorize_resource
+  
   def new
     @school_import = SchoolImport.new
   end

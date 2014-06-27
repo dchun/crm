@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   skip_before_filter :require_no_authentication
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
+    
   # GET /users
   # GET /users.json
   def index

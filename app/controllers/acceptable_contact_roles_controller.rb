@@ -1,6 +1,7 @@
 class AcceptableContactRolesController < ApplicationController
   before_action :set_acceptable_contact_role, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
+  
   # GET /acceptable_contact_roles
   # GET /acceptable_contact_roles.json
   def index

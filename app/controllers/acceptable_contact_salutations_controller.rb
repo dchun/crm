@@ -1,6 +1,7 @@
 class AcceptableContactSalutationsController < ApplicationController
   before_action :set_acceptable_contact_salutation, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
+  
   # GET /acceptable_contact_salutations
   # GET /acceptable_contact_salutations.json
   def index

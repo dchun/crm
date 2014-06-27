@@ -9,3 +9,13 @@
 dd {
 	height: 20px;
 }
+
+th select,
+th input {
+	min-width: 30px;
+	width: 100%;
+}
+
+th .btn {
+	margin-bottom: 7px;
+}
