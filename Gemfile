@@ -20,6 +20,7 @@ gem 'roo' # For excel processing
 gem 'ransack', '~> 1.2.3' # For data filtering
 gem 'kaminari' # Table pagination
 gem 'bootstrap-kaminari-views'
+gem 'faker', '~> 1.3.0' # Populate database with random data
 
 group :production do
   gem 'rails_12factor' # Asset precompiler for heroku
