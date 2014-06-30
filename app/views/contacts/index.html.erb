@@ -22,10 +22,10 @@
       <th><%= f.text_field :fname_cont, placeholder: "contains" %></th>
       <th><%= f.text_field :lname_cont, placeholder: "contains" %></th>
       <th><%= f.text_field :email_cont, placeholder: "contains" %></th>
-      <th><%= f.collection_select :salutation_eq, AcceptableContactSalutation.all, :salutation, :salutation, prompt: :blank %></th>
-      <th><%= f.collection_select :position_eq, AcceptableContactPosition.all, :position, :position, prompt: :blank %></th>
-      <th><%= f.collection_select :role_eq, AcceptableContactRole.all, :role, :role, prompt: :blank %></th>
-      <th class="span3"><%= f.collection_select :school_id_eq, School.all, :id, :name, prompt: :blank %></th>
+      <th><%= f.collection_select :salutation_eq, AcceptableContactSalutation.order(:salutation), :salutation, :salutation, prompt: :blank %></th>
+      <th><%= f.collection_select :position_eq, AcceptableContactPosition.order(:position), :position, :position, prompt: :blank %></th>
+      <th><%= f.collection_select :role_eq, AcceptableContactRole.order(:role), :role, :role, prompt: :blank %></th>
+      <th class="span3"><%= f.collection_select :school_id_eq, School.order(:name), :id, :name, prompt: :blank %></th>
       <th></th>
       <th><%= link_to "Clear", contacts_path, class: "btn btn-warning" %></th>
       <th><%= f.submit "Search", class: "btn btn-info" %></th>
@@ -71,6 +71,7 @@
 
 <% if can? :manage, :all %>
   <%= link_to "Import Contacts", new_contact_import_path, class: "btn btn-success" %>
+  <%= link_to "Export Contacts", contacts_path(params.merge(format: "xls")), class: "btn btn-info" %>
   <%= link_to "Salutations", acceptable_contact_salutations_path, class: "btn btn-default" %>
   <%= link_to "Positions", acceptable_contact_positions_path, class: "btn btn-default" %>
   <%= link_to "Roles", acceptable_contact_roles_path, class: "btn btn-default" %>

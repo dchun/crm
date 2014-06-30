@@ -3,5 +3,10 @@
 </div>
 
 <div class="row-fluid">
-
+<%= form_tag schools_path, :method => :get do %>
+  <p>
+    <%= text_field_tag :geo, params[:geo], class: "form-control" %>
+    <%= submit_tag "Search Near", :name => nil, class: "btn btn-info" %>
+  </p>
+<% end %>
 </div><!--/row-->

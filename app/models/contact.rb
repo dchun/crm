@@ -50,4 +50,18 @@ class Contact < ActiveRecord::Base
     s = School.all
     s_list = s.collect{ |s| s.name.split[0].downcase }
   end
+
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |contact|
+        csv << contact.attributes.values_at(*column_names)
+      end
+    end
+  end
+
+  def update_attributes_only_if_blank(attributes)
+    attributes.each { |k,v| attributes.delete(k) unless read_attribute(k).blank? }
+    update_attributes(attributes)
+  end
 end

@@ -60,6 +60,13 @@
   <dd><%= @school.ap_student_performance_exam_pass_rate %></dd>
 </dl>
 
+<h3>Nearby Schools</h3>
+<ul>
+<% for school in @school.nearbys(1000) %>
+  <li><%= link_to school.address, school %> (<%= school.distance.round(2) %> miles)</li>
+<% end %>
+</ul>
+
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
               schools_path, :class => 'btn'  %>

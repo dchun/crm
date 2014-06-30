@@ -15,44 +15,44 @@
   <div class="control-group">
     <%= f.label :school_id, "School", :class => 'control-label' %>
     <div class="controls">
-      <%= f.collection_select :school_id, School.order(:name), :id, :name, prompt: :blank %>    
+      <%= f.collection_select :school_id, School.order(:name), :id, :name, { prompt: :blank }, { disabled: ( (cannot? :create, @contact) && (@contact.school_id.present?) ) } %>    
     </div>
   </div>
 
   <div class="control-group">
     <%= f.label :fname, "First Name", :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :fname, :class => 'text_field' %>
+      <%= f.text_field :fname, :class => 'text_field', disabled: ( (cannot? :create, @contact) && (@contact.fname.present?) ) %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :lname, "Last Name", :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :lname, :class => 'text_field' %>
+      <%= f.text_field :lname, :class => 'text_field', disabled: ( (cannot? :create, @contact) && (@contact.lname.present?) ) %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :email, "Email", :class => 'control-label' %>
     <div class="controls">
-      <%= f.email_field :email, :class => 'text_field' %>
+      <%= f.email_field :email, :class => 'text_field', disabled: ( (cannot? :create, @contact) && (@contact.email.present?) ) %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :salutation, "Salutation", :class => 'control-label' %>
     <div class="controls">
-      <%= f.collection_select :salutation, AcceptableContactSalutation.order(:salutation), :salutation, :salutation, prompt: :blank %>
+      <%= f.collection_select :salutation, AcceptableContactSalutation.order(:salutation), :salutation, :salutation, { prompt: :blank }, { disabled: ( (cannot? :create, @contact) && (@contact.salutation.present?) ) } %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :position, "Position", :class => 'control-label' %>
     <div class="controls">
-      <%= f.collection_select :position, AcceptableContactPosition.order(:position), :position, :position, prompt: :blank %>
+      <%= f.collection_select :position, AcceptableContactPosition.order(:position), :position, :position, { prompt: :blank }, { disabled: ( (cannot? :create, @contact) && (@contact.position.present?) ) } %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :role, "Role", :class => 'control-label' %>
     <div class="controls">
-      <%= f.collection_select :role, AcceptableContactRole.order(:role), :role, :role, prompt: :blank %>
+      <%= f.collection_select :role, AcceptableContactRole.order(:role), :role, :role, { prompt: :blank }, { disabled: ( (cannot? :create, @contact) && (@contact.role.present?) ) } %>
     </div>
   </div>
 

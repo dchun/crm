@@ -6,7 +6,12 @@ class SchoolsController < ApplicationController
   # GET /schools.json
   def index
     @search = School.search(params[:q])
-    @schools = @search.result.page(params[:page]).per(50)
+    @schools = @search.result.page(params[:page]).per(25)
+    respond_to do |format|
+      format.html
+      format.csv { send_data @schools.to_csv }
+      format.xls { send_data @schools.to_csv(col_sep: "\t") }
+    end
   end
 
   # GET /schools/1

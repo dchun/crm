@@ -9,7 +9,12 @@ class ContactsController < ApplicationController
     if current_user.role == "Contact Editing"
       @contacts = @search.result.where(complete: false).page(params[:page]).per(10)
     else
-      @contacts = @search.result.page(params[:page]).per(50)
+      @contacts = @search.result.page(params[:page]).per(25)
+    end
+    respond_to do |format|
+      format.html
+      format.csv { send_data @contacts.to_csv }
+      format.xls { send_data @contacts.to_csv(col_sep: "\t") }
     end
   end
 
@@ -47,12 +52,22 @@ class ContactsController < ApplicationController
   # PATCH/PUT /contacts/1.json
   def update
     respond_to do |format|
-      if @contact.update(contact_params)
-        format.html { redirect_to @contact, notice: 'Contact was successfully updated.' }
-        format.json { render :show, status: :ok, location: @contact }
+      if current_user.role == "Contact Editing"
+        if @contact.update_attributes_only_if_blank(contact_params)
+          format.html { redirect_to @contact, notice: 'Contact was successfully updated.' }
+          format.json { render :show, status: :ok, location: @contact }
+        else
+          format.html { render :edit }
+          format.json { render json: @contact.errors, status: :unprocessable_entity }
+        end      
       else
-        format.html { render :edit }
-        format.json { render json: @contact.errors, status: :unprocessable_entity }
+        if @contact.update(contact_params)
+          format.html { redirect_to @contact, notice: 'Contact was successfully updated.' }
+          format.json { render :show, status: :ok, location: @contact }
+        else
+          format.html { render :edit }
+          format.json { render json: @contact.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

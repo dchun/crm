@@ -16,7 +16,7 @@
       <th class="span1"><%= sort_link @search, :reading_score, "RS", {}, data: { toggle: :tooltip, placement: :top, title: "Reading Score" } %></th>
       <th class="span1"><%= sort_link @search, :reading_proficient, "RP", {}, data: { toggle: :tooltip, placement: :top, title: "Reading Proficient %" } %></th>
       <th class="span1"><%= sort_link @search, :reading_not_proficient, "RnP", {}, data: { toggle: :tooltip, placement: :top, title: "Reading Not Proficient %" } %></th>
-      <th><%= sort_link @search, :created_at, "Created", {}, data: { toggle: :tooltip, placement: :top, title: "State" } %></th>
+      <th><%= sort_link @search, :created_at, "Created", {}, data: { toggle: :tooltip, placement: :top, title: "Created At" } %></th>
       <th class="span2"><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
     <tr>
@@ -62,7 +62,7 @@
       <th></th>
       <th>
         <%= f.submit "Search", class: "btn btn-info" %>
-        <%= link_to "Clear", contacts_path, class: "btn btn-warning" %>
+        <%= link_to "Clear", districts_path, class: "btn btn-warning" %>
       </th>
     <% end %>
     </tr>
@@ -102,4 +102,6 @@
             new_district_path,
             :class => 'btn btn-primary' %>
 
-<%= link_to "Import Districts", new_district_import_path, class: "btn btn-default" %>
+<%= link_to "Import Districts", new_district_import_path, class: "btn btn-success" %>
+<%= link_to "Export Districts", districts_path(params.merge(format: "xls")), class: "btn btn-info" %>
+

@@ -33,7 +33,7 @@
     <tr>
     <%= search_form_for @search do |f| %>
       <th><%= f.select :state_eq, us_states, prompt: :blank %></th>
-      <th><%= f.collection_select :district_id_eq, District.all, :id, :name, prompt: :blank %></th>
+      <th><%= f.collection_select :district_id_eq, District.order(:name), :id, :name, prompt: :blank %></th>
       <th><%= f.text_field :name_cont, placeholder: "contains" %></th>
       <th>
         <%= f.number_field :state_rank_gteq, placeholder: ">=" %>
@@ -162,4 +162,6 @@
             new_school_path,
             :class => 'btn btn-primary' %>
 
-<%= link_to "Import Schools", new_school_import_path, class: "btn btn-default" %>
+<%= link_to "Import Schools", new_school_import_path, class: "btn btn-success" %>
+<%= link_to "Export Schools", schools_path(params.merge(format: "xls")), class: "btn btn-info" %>
+

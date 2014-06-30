@@ -6,7 +6,12 @@ class DistrictsController < ApplicationController
   # GET /districts.json
   def index
     @search = District.search(params[:q])
-    @districts = @search.result.page(params[:page]).per(50)
+    @districts = @search.result.page(params[:page]).per(25)
+    respond_to do |format|
+      format.html
+      format.csv { send_data @districts.to_csv }
+      format.xls { send_data @districts.to_csv(col_sep: "\t") }
+    end
   end
 
   # GET /districts/1
