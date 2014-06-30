@@ -27,7 +27,8 @@
       <th class="span1"><%= sort_link @search, :ap_student_performance_participant_passing_rate, "PPR", {}, data: { toggle: :tooltip, placement: :top, title: "AP Student Performance: Participant Passing Rate" } %></th>
       <th class="span1"><%= sort_link @search, :ap_student_performance_exam_per_test_taker, "EPT", {}, data: { toggle: :tooltip, placement: :top, title: "AP Student Performance: Exam Per Test Taker" } %></th>
       <th class="span1"><%= sort_link @search, :ap_student_performance_exam_pass_rate, "EPR", {}, data: { toggle: :tooltip, placement: :top, title: "AP Student Performance: Exam Pass Rate" } %></th>
-      <th><%= sort_link @search, :created_at, "Created", {}, data: { toggle: :tooltip, placement: :top, title: "Created At" } %></th>
+      <th class="span1"><%= sort_link @search, :contacts_count, "Con", {}, data: { toggle: :tooltip, placement: :top, title: "Number of Contacts in School" } %></th>
+      <th><%= sort_link @search, :updated_at, "Updated", {}, data: { toggle: :tooltip, placement: :top, title: "Updated At" } %></th>
       <th class="span2"><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
     <tr>
@@ -108,6 +109,7 @@
         <%= f.number_field :ap_student_performance_exam_pass_rate_lteq, placeholder: "<=" %>
       </th>
      <th></th>
+     <th></th>
      <th>
         <%= f.submit "Search", class: "btn btn-info" %>
         <%= link_to "Clear", schools_path, class: "btn btn-warning" %>
@@ -141,7 +143,8 @@
         <td><%= number_to_percentage school.ap_student_performance_participant_passing_rate, precision: 0 %></td>
         <td><%= school.ap_student_performance_exam_per_test_taker %></td>
         <td><%= number_to_percentage school.ap_student_performance_exam_pass_rate, precision: 0 %></td>
-        <td><%= school.created_at.strftime("%B %d, %Y") %></td>
+        <td><%= school.contacts_count %></td>
+        <td><%= school.updated_at.strftime("%B %d, %Y") %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_school_path(school), :class => 'btn btn-mini' %>

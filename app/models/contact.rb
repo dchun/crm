@@ -20,7 +20,7 @@ class Contact < ActiveRecord::Base
   after_validation :set_record_complete
 
   def set_record_complete
-    self.fname? && self.lname? && self.salutation? && self.position? && self.role? ? self.complete = true : self.complete = false 
+    self.fname? && self.lname? && self.salutation? && self.position? && self.role? && self.reference_url? ? self.complete = true : self.complete = false 
   end
 
   def acceptable_salutation_list
@@ -61,7 +61,7 @@ class Contact < ActiveRecord::Base
   end
 
   def update_attributes_only_if_blank(attributes)
-    attributes.each { |k,v| attributes.delete(k) unless read_attribute(k).blank? }
+    attributes.each { |k,v| attributes.delete(k) unless read_attribute(k).blank? || k == 'updated_by'}
     update_attributes(attributes)
   end
 end

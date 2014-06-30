@@ -16,7 +16,9 @@
       <th class="span1"><%= sort_link @search, :reading_score, "RS", {}, data: { toggle: :tooltip, placement: :top, title: "Reading Score" } %></th>
       <th class="span1"><%= sort_link @search, :reading_proficient, "RP", {}, data: { toggle: :tooltip, placement: :top, title: "Reading Proficient %" } %></th>
       <th class="span1"><%= sort_link @search, :reading_not_proficient, "RnP", {}, data: { toggle: :tooltip, placement: :top, title: "Reading Not Proficient %" } %></th>
-      <th><%= sort_link @search, :created_at, "Created", {}, data: { toggle: :tooltip, placement: :top, title: "Created At" } %></th>
+      <th class="span1"><%= sort_link @search, :schools_count, "Sch", {}, data: { toggle: :tooltip, placement: :top, title: "Number of Schools in District" } %></th>
+      <th class="span1"><%= sort_link @search, :contacts_count, "Con", {}, data: { toggle: :tooltip, placement: :top, title: "Number of Contacts in District" } %></th>
+      <th><%= sort_link @search, :updated_at, "Updated", {}, data: { toggle: :tooltip, placement: :top, title: "Updated At" } %></th>
       <th class="span2"><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
     <tr>
@@ -60,6 +62,8 @@
         <%= f.number_field :reading_not_proficient_lteq, placeholder: "<=" %>
       </th>
       <th></th>
+      <th></th>
+      <th></th>
       <th>
         <%= f.submit "Search", class: "btn btn-info" %>
         <%= link_to "Clear", districts_path, class: "btn btn-warning" %>
@@ -81,7 +85,9 @@
         <td><%= district.reading_score %></td>
         <td><%= number_to_percentage district.reading_proficient, precision: 0 %></td>
         <td><%= number_to_percentage district.reading_not_proficient, precision: 0 %></td>
-        <td><%= district.created_at.strftime("%B %d, %Y") %></td>
+        <td><%= district.schools_count %></td>
+        <td><%= district.contacts_count %></td>
+        <td><%= district.updated_at.strftime("%B %d, %Y") %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_district_path(district), :class => 'btn btn-mini' %>

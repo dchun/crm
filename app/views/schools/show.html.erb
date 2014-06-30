@@ -1,71 +1,136 @@
-<%- model_class = School -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+  <h1><%= @school.name %></h1>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong>State</strong></dt>
-  <dd><%= @school.state %></dd>
-  <dt><strong>District</strong></dt>
-  <dd><%= @school.district.name if @school.district.present? %></dd>
-  <dt><strong>School Name</strong></dt>
-  <dd><%= @school.name %></dd>
-  <dt><strong>State Rank</strong></dt>
-  <dd><%= @school.state_rank %></dd>
-  <dt><strong>National Rank</strong></dt>
-  <dd><%= @school.national_rank %></dd>
-  <dt><strong>College readiness Score</strong></dt>
-  <dd><%= @school.college_readiness_score %></dd>
-  <dt><strong>% Tested AP/IB</strong></dt>
-  <dd><%= @school.tested_ap_ib %></dd>
-  <dt><strong>% Passed AP/IB</strong></dt>
-  <dd><%= @school.pass_ap_ib %></dd>
-  <dt><strong>Math Score</strong></dt>
-  <dd><%= @school.math_score %></dd>
-  <dt><strong>Math Proficient %</strong></dt>
-  <dd><%= @school.math_proficient %></dd>
-  <dt><strong>Math Not Proficient %</strong></dt>
-  <dd><%= @school.math_not_proficient %></dd>
-  <dt><strong>Reading Score</strong></dt>
-  <dd><%= @school.reading_score %></dd>
-  <dt><strong>Reading Proficient %</strong></dt>
-  <dd><%= @school.reading_proficient %></dd>
-  <dt><strong>Reading not Proficient %</strong></dt>
-  <dd><%= @school.reading_not_proficient %></dd>
-  <dt><strong>Student/Teacher Ratio</strong></dt>
-  <dd><%= @school.student_teacher_ratio %></dd>
-  <dt><strong>Street Address</strong></dt>
-  <dd><%= @school.street_address %></dd>
-  <dt><strong>City</strong></dt>
-  <dd><%= @school.city %></dd>
-  <dt><strong>Zip</strong></dt>
-  <dd><%= @school.zip %></dd>
-  <dt><strong>Latitiude</strong></dt>
-  <dd><%= @school.latitude %></dd>
-  <dt><strong>Longitude</strong></dt>
-  <dd><%= @school.longitude %></dd>
-  <dt><strong>Total Enrollment</strong></dt>
-  <dd><%= @school.total_enrollment %></dd>
-  <dt><strong>Total Economically Disadvantaged</strong></dt>
-  <dd><%= @school.total_economically_disadvantaged %></dd>
-  <dt><strong>Receives Title I Funding</strong></dt>
-  <dd><%= @school.receives_title_i_funding %></dd>
-  <dt><strong>AP Student Performance Participation Rate</strong></dt>
-  <dd><%= @school.ap_student_performance_participation_rate %></dd>
-  <dt><strong>AP Student Performance Participation Passing Rate</strong></dt>
-  <dd><%= @school.ap_student_performance_participant_passing_rate %></dd>
-  <dt><strong>AP Student Performance Exam Per Test Taker</strong></dt>
-  <dd><%= @school.ap_student_performance_exam_per_test_taker %></dd>
-  <dt><strong>AP Student Performance Exam Pass Rate</strong></dt>
-  <dd><%= @school.ap_student_performance_exam_pass_rate %></dd>
-</dl>
+<div class="row">
+  <div class="span6">
+    <span class="label ml30">School Details</span>
+    <dl class="dl-horizontal large">
+      <dt><strong>State Rank</strong></dt>
+      <dd><%= @school.state_rank %></dd>
+      <dt><strong>National Rank</strong></dt>
+      <dd><%= @school.national_rank %></dd>
+      <dt><strong>College readiness Score</strong></dt>
+      <dd><%= @school.college_readiness_score %></dd>
+      <dt><strong>% Tested AP/IB</strong></dt>
+      <dd><%= @school.tested_ap_ib %></dd>
+      <dt><strong>% Passed AP/IB</strong></dt>
+      <dd><%= @school.pass_ap_ib %></dd>
+      <dt><strong>Math Score</strong></dt>
+      <dd><%= @school.math_score %></dd>
+      <dt><strong>Math Proficient %</strong></dt>
+      <dd><%= @school.math_proficient %></dd>
+      <dt><strong>Math Not Proficient %</strong></dt>
+      <dd><%= @school.math_not_proficient %></dd>
+      <dt><strong>Reading Score</strong></dt>
+      <dd><%= @school.reading_score %></dd>
+      <dt><strong>Reading Proficient %</strong></dt>
+      <dd><%= @school.reading_proficient %></dd>
+      <dt><strong>Reading not Proficient %</strong></dt>
+      <dd><%= @school.reading_not_proficient %></dd>
+      <dt><strong>Student/Teacher Ratio</strong></dt>
+      <dd><%= @school.student_teacher_ratio %></dd>
+      <dt><strong>Street Address</strong></dt>
+      <dd><%= @school.street_address %></dd>
+      <dt><strong>City</strong></dt>
+      <dd><%= @school.city %></dd>
+      <dt><strong>Zip</strong></dt>
+      <dd><%= @school.zip %></dd>
+      <dt><strong>State</strong></dt>
+      <dd><%= @school.state %></dd>
+      <dt><strong>Latitiude</strong></dt>
+      <dd><%= @school.latitude %></dd>
+      <dt><strong>Longitude</strong></dt>
+      <dd><%= @school.longitude %></dd>
+      <dt><strong>Total Enrollment</strong></dt>
+      <dd><%= @school.total_enrollment %></dd>
+      <dt><strong>Total Economically Disadvantaged</strong></dt>
+      <dd><%= @school.total_economically_disadvantaged %></dd>
+      <dt><strong>Receives Title I Funding</strong></dt>
+      <dd><%= @school.receives_title_i_funding %></dd>
+      <dt><strong>AP Student Performance Participation Rate</strong></dt>
+      <dd><%= @school.ap_student_performance_participation_rate %></dd>
+      <dt><strong>AP Student Performance Participation Passing Rate</strong></dt>
+      <dd><%= @school.ap_student_performance_participant_passing_rate %></dd>
+      <dt><strong>AP Student Performance Exam Per Test Taker</strong></dt>
+      <dd><%= @school.ap_student_performance_exam_per_test_taker %></dd>
+      <dt><strong>AP Student Performance Exam Pass Rate</strong></dt>
+      <dd><%= @school.ap_student_performance_exam_pass_rate %></dd>
+    </dl>
+  </div>
 
-<h3>Nearby Schools</h3>
-<ul>
-<% for school in @school.nearbys(1000) %>
-  <li><%= link_to school.address, school %> (<%= school.distance.round(2) %> miles)</li>
-<% end %>
-</ul>
+  <div class="span6 ml30">
+    <span class="label">District Details</span>
+    <dl class="dl-horizontal medium">
+    <% if @school.district.present? %>
+      <dt><strong>District Name</strong></dt>
+      <dd><%= link_to @school.district.name, district_path(@school.district) %></dd>
+      <dt><strong>State</strong></dt>
+      <dd><%= @school.district.state %></dd>
+      <dt><strong>College Readiness Score</strong></dt>
+      <dd><%= @school.district.college_readiness_score %></dd>
+      <dt><strong>% Tested AP</strong></dt>
+      <dd><%= @school.district.tested_ap %></dd>
+      <dt><strong>% Passed AP</strong></dt>
+      <dd><%= @school.district.passed_ap %></dd>
+      <dt><strong>Math Score</strong></dt>
+      <dd><%= @school.district.math_score %></dd>
+      <dt><strong>Math Proficient %</strong></dt>
+      <dd><%= @school.district.math_proficient %></dd>
+      <dt><strong>Math Not Proficient %</strong></dt>
+      <dd><%= @school.district.math_not_proficient %></dd>
+      <dt><strong>Reading Score</strong></dt>
+      <dd><%= @school.district.reading_score %></dd>
+      <dt><strong>Reading Proficient %</strong></dt>
+      <dd><%= @school.district.reading_proficient %></dd>
+      <dt><strong>Reading Not Proficient %</strong></dt>
+      <dd><%= @school.district.reading_not_proficient %></dd>
+    <% end %>
+    </dl>
+
+    <span class="label">Nearby Schools</span>
+    <dl class="dl-horizontal">
+      <% for school in @school.nearbys(1000) %>
+        <dt><strong><%= school.distance.round(2) %> miles</strong></dt>
+        <dd><%= link_to school.address, school %></dd>
+      <% end %>
+    </dl>
+  </div>
+</div>
+
+<table class="table table-striped">
+<span class="label">Contacts in School</span>
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Salutation</th>
+      <th>Position</th>
+      <th>Role</th>
+      <th>URL</th>
+      <th>Updated</th>
+      <th>On</th>
+    </tr>
+  </thead>
+  <% if @school.contacts.present? %>
+    <tbody>
+    <% @school.contacts.each do |contact| %>
+      <tr>
+        <td><%= link_to contact.fname, contact_path(contact) %></td>
+        <td><%= contact.lname %></td>
+        <td><%= contact.email %></td>
+        <td><%= contact.salutation %></td>
+        <td><%= contact.position %></td>
+        <td><%= contact.role %></td>
+        <td><%= contact.reference_url %></td>
+        <td><%= contact.updated_by %></td>
+        <td><%= contact.updated_at.strftime("%B %d, %Y") %> </td>     
+      </tr>
+    <% end %>
+    </tbody>
+  <% end %>
+</table>
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),

@@ -5,8 +5,11 @@ class DistrictsController < ApplicationController
   # GET /districts
   # GET /districts.json
   def index
-    @search = District.search(params[:q])
-    @districts = @search.result.page(params[:page]).per(25)
+    @search = District.with_all.search(params[:q])
+
+    @order =  (params[:q] && params[:q][:s]) ? params[:q][:s] : 'name asc'
+
+    @districts = @search.result.order(@order).page(params[:page]).per(25)
     respond_to do |format|
       format.html
       format.csv { send_data @districts.to_csv }

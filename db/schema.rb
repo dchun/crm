@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140626024538) do
+ActiveRecord::Schema.define(version: 20140630020250) do
 
   create_table "acceptable_contact_positions", force: true do |t|
     t.string   "position"
@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 20140626024538) do
     t.integer  "school_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "reference_url"
+    t.string   "updated_by"
   end
 
   add_index "contacts", ["school_id"], name: "index_contacts_on_school_id"

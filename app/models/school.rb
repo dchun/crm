@@ -1,5 +1,6 @@
 class School < ActiveRecord::Base
   belongs_to :district
+  has_many :contacts
 
   validates_presence_of :name
   validates_presence_of :district
@@ -37,5 +38,11 @@ class School < ActiveRecord::Base
         csv << school.attributes.values_at(*column_names)
       end
     end
+  end
+
+  def self.with_contacts
+    joins(:contacts).select('schools.*, count(distinct contacts.id) as contacts_count')
+    .uniq
+    .group('schools.id')
   end
 end

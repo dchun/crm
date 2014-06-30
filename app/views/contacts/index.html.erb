@@ -13,8 +13,10 @@
       <th><%= sort_link @search, :position, "Position" %></th>
       <th><%= sort_link @search, :role, "Role" %></th>
       <th><%= sort_link @search, :school_name, "School" %></th>
-      <th><%= sort_link @search, :updated_at, "Updated" %></th>
-      <th><%= sort_link @search, :created_at, "Created" %></th>
+      <th><%= sort_link @search, :district_name, "District" %></th>
+      <th><%= sort_link @search, :reference_url, "URL" %></th>
+      <th><%= sort_link @search, :updated_by, "Updated By" %></th>
+      <th><%= sort_link @search, :updated_at, "On" %></th>
       <th class="span2"><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
     <tr>
@@ -26,9 +28,11 @@
       <th><%= f.collection_select :position_eq, AcceptableContactPosition.order(:position), :position, :position, prompt: :blank %></th>
       <th><%= f.collection_select :role_eq, AcceptableContactRole.order(:role), :role, :role, prompt: :blank %></th>
       <th class="span3"><%= f.collection_select :school_id_eq, School.order(:name), :id, :name, prompt: :blank %></th>
-      <th></th>
-      <th><%= link_to "Clear", contacts_path, class: "btn btn-warning" %></th>
+      <th class="span3"><%= f.collection_select :school_district_id_eq, District.order(:name), :id, :name, prompt: :blank %></th>
+      <th><%= f.text_field :reference_url, placeholder: "contains" %></th>
+      <th><%= f.text_field :updated_by, placeholder: "contains" %></th>
       <th><%= f.submit "Search", class: "btn btn-info" %></th>
+      <th><%= link_to "Clear", contacts_path, class: "btn btn-warning" %></th>
     <% end %><!-- end search form -->
     </tr>
   </thead>
@@ -42,8 +46,10 @@
         <td><%= contact.position %></td>
         <td><%= contact.role %></td>
         <td><%= contact.school.name if contact.school.present? %></td>
+        <td><%= contact.school.district.name if contact.school.district.present? %></td>
+        <td><%= contact.reference_url %></td>
+        <td><%= contact.updated_by %></td>
         <td><%= contact.updated_at.strftime("%B %d, %Y") %></td>
-        <td><%= contact.created_at.strftime("%B %d, %Y") %></td>
         <td>
           <% if can? :update, contact %>
             <%= link_to t('.edit', :default => t("helpers.links.edit")),

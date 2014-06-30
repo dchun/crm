@@ -1,24 +1,88 @@
-<%- model_class = Contact -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+  <h1><%= @contact.salutation %> <%= @contact.fname %> <%= @contact.lname %></h1>
 </div>
+<div class="row">
+  <div class="span6">
+    <span class="label ml30">Contact Details</span>
+    <dl class="dl-horizontal">
+      <dt><strong>Email</strong></dt>
+      <dd> <%= @contact.email %></dd>
+      <dt><strong>Position</strong></dt>
+      <dd> <%= @contact.position %></dd>
+      <dt><strong>Role</strong></dt>
+      <dd> <%= @contact.role %></dd>
+      <dt><strong>Reference URL</strong></dt>
+      <dd> <%= @contact.reference_url %></dd>
+      <dt><strong>Updated By</strong></dt>
+      <dd> <%= @contact.updated_by %></dd>
+      <dt><strong>On</strong></dt>
+      <dd> <%= @contact.updated_at.strftime("%B %d, %Y") %></dd>
+    </dl>
+  </div>
 
-<dl class="dl-horizontal">
-  <dt><strong>First Name</strong></dt>
-  <dd> <%= @contact.fname %></dd>
-  <dt><strong>Last Name</strong></dt>
-  <dd> <%= @contact.lname %></dd>
-  <dt><strong>Email</strong></dt>
-  <dd> <%= @contact.email %></dd>
-  <dt><strong>Salutation</strong></dt>
-  <dd> <%= @contact.salutation %></dd>
-  <dt><strong>Position</strong></dt>
-  <dd> <%= @contact.position %></dd>
-  <dt><strong>Role</strong></dt>
-  <dd> <%= @contact.role %></dd>
-  <dt><strong>School</strong></dt>
-  <dd> <%= @contact.school.name if @contact.school.present? %></dd>
-</dl>
+  <div class="span6 ml30">
+    <span class="label">School Details</span>
+    <dl class="dl-horizontal large">
+    <% if @contact.school.present? %>
+      <dt><strong>School Name</strong></dt>
+      <dd><%= link_to @contact.school.name, school_path(@contact.school) %></dd>
+      <dt><strong>District Name</strong></dt>
+      <dd><%= link_to @contact.school.district.name, district_path(@contact.school.district) %></dd>
+      <dt><strong>State Rank</strong></dt>
+      <dd><%= @contact.school.state_rank %></dd>
+      <dt><strong>National Rank</strong></dt>
+      <dd><%= @contact.school.national_rank %></dd>
+      <dt><strong>College readiness Score</strong></dt>
+      <dd><%= @contact.school.college_readiness_score %></dd>
+      <dt><strong>% Tested AP/IB</strong></dt>
+      <dd><%= @contact.school.tested_ap_ib %></dd>
+      <dt><strong>% Passed AP/IB</strong></dt>
+      <dd><%= @contact.school.pass_ap_ib %></dd>
+      <dt><strong>Math Score</strong></dt>
+      <dd><%= @contact.school.math_score %></dd>
+      <dt><strong>Math Proficient %</strong></dt>
+      <dd><%= @contact.school.math_proficient %></dd>
+      <dt><strong>Math Not Proficient %</strong></dt>
+      <dd><%= @contact.school.math_not_proficient %></dd>
+      <dt><strong>Reading Score</strong></dt>
+      <dd><%= @contact.school.reading_score %></dd>
+      <dt><strong>Reading Proficient %</strong></dt>
+      <dd><%= @contact.school.reading_proficient %></dd>
+      <dt><strong>Reading not Proficient %</strong></dt>
+      <dd><%= @contact.school.reading_not_proficient %></dd>
+      <dt><strong>Student/Teacher Ratio</strong></dt>
+      <dd><%= @contact.school.student_teacher_ratio %></dd>
+      <dt><strong>Street Address</strong></dt>
+      <dd><%= @contact.school.street_address %></dd>
+      <dt><strong>City</strong></dt>
+      <dd><%= @contact.school.city %></dd>
+      <dt><strong>Zip</strong></dt>
+      <dd><%= @contact.school.zip %></dd>
+      <dt><strong>State</strong></dt>
+      <dd><%= @contact.school.state %></dd>
+      <dt><strong>Latitiude</strong></dt>
+      <dd><%= @contact.school.latitude %></dd>
+      <dt><strong>Longitude</strong></dt>
+      <dd><%= @contact.school.longitude %></dd>
+      <dt><strong>Total Enrollment</strong></dt>
+      <dd><%= @contact.school.total_enrollment %></dd>
+      <dt><strong>Total Economically Disadvantaged</strong></dt>
+      <dd><%= @contact.school.total_economically_disadvantaged %></dd>
+      <dt><strong>Receives Title I Funding</strong></dt>
+      <dd><%= @contact.school.receives_title_i_funding %></dd>
+      <dt><strong>AP Student Performance Participation Rate</strong></dt>
+      <dd><%= @contact.school.ap_student_performance_participation_rate %></dd>
+      <dt><strong>AP Student Performance Participation Passing Rate</strong></dt>
+      <dd><%= @contact.school.ap_student_performance_participant_passing_rate %></dd>
+      <dt><strong>AP Student Performance Exam Per Test Taker</strong></dt>
+      <dd><%= @contact.school.ap_student_performance_exam_per_test_taker %></dd>
+      <dt><strong>AP Student Performance Exam Pass Rate</strong></dt>
+      <dd><%= @contact.school.ap_student_performance_exam_pass_rate %></dd>
+    <% end %>
+    </dl>
+
+  </div>
+</div>
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),

@@ -55,6 +55,15 @@
       <%= f.collection_select :role, AcceptableContactRole.order(:role), :role, :role, { prompt: :blank }, { disabled: ( (cannot? :create, @contact) && (@contact.role.present?) ) } %>
     </div>
   </div>
+  <div class="control-group">
+    <%= f.label :reference_url, "Reference URL", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :reference_url, :class => 'text_field', disabled: ( (cannot? :create, @contact) && (@contact.reference_url.present?) ) %>
+    </div>
+  </div>
+
+  <%= f.hidden_field :updated_by, value: current_user.email %>
+
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>

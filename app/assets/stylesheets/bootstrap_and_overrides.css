@@ -8,20 +8,28 @@
 @media (min-width: 767px) {
 	dd {
 		height: 20px;
+	}
+	.large dd {
 		margin-left: 420px !important;
 	}
-
-	dt {
+	.large dt {
 		width: 400px !important;
 	}
-
+	.medium dd {
+		margin-left: 280px !important;
+	}
+	.medium dt {
+		width: 260px !important;
+	}
 	.form-horizontal .control-label {
 		width: 300px;
 	}
-
 	.form-horizontal .controls {
 		margin-left: 320px;
 	}
+	.ml30 {
+	margin-left: 30px;
+}
 }
 
 th select,

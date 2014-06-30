@@ -5,8 +5,11 @@ class SchoolsController < ApplicationController
   # GET /schools
   # GET /schools.json
   def index
-    @search = School.search(params[:q])
-    @schools = @search.result.page(params[:page]).per(25)
+    @search = School.with_contacts.search(params[:q])
+
+    @order =  (params[:q] && params[:q][:s]) ? params[:q][:s] : 'name asc'
+
+    @schools = @search.result.order(@order).page(params[:page]).per(25)
     respond_to do |format|
       format.html
       format.csv { send_data @schools.to_csv }
