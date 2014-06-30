@@ -2,5 +2,225 @@
   <h1>Dashboard</h1>
 </div>
 
-<div class="row-fluid">
-</div><!--/row-->
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span3">
+      <div class="well sidebar-nav">
+        <ul class="nav nav-list">
+          <li class="nav-header">Sidebar</li>
+          <li><%= link_to "Import", "#import", data: {anchor: "#import"} %></li>
+            <ul>
+              <li><%= link_to "Contacts", "#import-contacts", data: {anchor: "#import-contacts"}  %></li>
+              <li><%= link_to "Schools", "#import-schools", data: {anchor: "#import-schools"}   %></li>
+              <li><%= link_to "Districts", "#import-districts", data: {anchor: "#import-districts"}   %></li>
+            </ul>
+          <li><%= link_to "Export", "#export", data: {anchor: "#export"} %></li>
+            <ul>
+              <li><%= link_to "Contacts", "#export-contacts", data: {anchor: "#export-contacts"}  %></li>
+              <li><%= link_to "Schools", "#export-schools", data: {anchor: "#export-schools"}   %></li>
+              <li><%= link_to "Districts", "#export-districts", data: {anchor: "#export-districts"}   %></li>
+            </ul>
+          <li><%= link_to "User", "#user", data: {anchor: "#user"} %></li>
+            <ul>
+              <li><%= link_to "Master", "#user-master", data: {anchor: "#user-master"}  %></li>
+              <li><%= link_to "Contact Editing", "#user-contact-editing", data: {anchor: "#user-contact-editing"}   %></li>
+              <li><%= link_to "Data Entry", "#user-data-entry", data: {anchor: "#user-data-entry"}   %></li>
+            </ul>
+          <li><%= link_to "Filter", "#filter", data: {anchor: "#filter"} %></li>
+            <ul>
+              <li><%= link_to "Contacts", "#filter-contacts", data: {anchor: "#filter-contacts"}  %></li>
+              <li><%= link_to "Schools", "#filter-schools", data: {anchor: "#filter-schools"}   %></li>
+              <li><%= link_to "Districts", "#filter-districts", data: {anchor: "#filter-districts"}   %></li>
+            </ul>
+        </ul>
+      </div><!--/.well -->
+    </div>
+    <div class="span9">
+      <div id="import">
+        <h2>Import</h2>
+        <p>There are three separate controllers that accesses the original model's validations to ensure proper data integrity.</p>
+
+        <div id="import-contacts">
+          <h3>Contacts</h3>
+          <p>It is recommended that Schools be imported prior to Contacts and Districts before Schools</p>
+
+          <p>A validation against existing school names currently exists but may require refinement <code>:school_first_downcase</code></p>
+
+          <p><code>:school_first_downcase</code> matches the names in the <code>school</code> field of the import table from an excel file against existing school names in the database. If a perfect match is found, the relation is made and the <code>school_id</code> is stored in the contacts database. If a match is not found, the validation will be processed with the following:</p>
+         
+          <span class="label label-warning">This may be problematic since the downcased first name of many schools may be the same.</span>
+          <pre>
+            validates_inclusion_of :school_first_downcase, 
+                           message: "may be duplicate, check against School names",
+                           in: :school_first_downcase_list, 
+                           unless: :school_full_match
+
+            def school_full_match
+              School.find_by_name(self.school.name) if self.school.present?
+            end
+
+            def school_first_downcase
+              s_name = self.school.name.split[0].downcase if self.school.present?
+            end
+
+            def school_first_downcase_list
+              s = School.all
+              s_list = s.collect{ |s| s.name.split[0].downcase }
+            end
+          </pre>
+
+          <p>All Fields are required along with the contact salutation, role, and position since the names must be validated against a pre-approved list.</p>
+
+          <p>Find a list of allowable fields <%= link_to "here", new_contact_import_path %>.</p>
+        </div>
+
+        <hr>
+        
+        <div id="import-schools">
+          <h3>Schools</h3>
+          <p>Currently only the school name and district name is required for the import function to pass all validations for schools.</p>
+
+          <p>Similar to the way in which the contacts_import model uses the conacts model to validate against the schools table, the school name field is validated against existing school names in the same table.</p>
+
+          <p>Schools will be geocoded upon import of addresses and must respect the API limits of the services, a list of which can be found <%= link_to "here", "https://github.com/alexreisner/geocoder#street-address-services" %>.</p>
+        </div>
+
+        <hr>
+        
+        <div id="import-districts">
+          <h3>Districts</h3>
+          <p>Districts only validate the presence of the name and state.</p>
+        </div>
+      </div>
+      <hr>
+      <div id="export">
+        <h2>Export</h2>
+        <p>The export function is not handled in a separate controller.</p>
+        <div id="export-contacts">
+          <h3>Contacts</h3>
+          <p>Currently all fields are exported according to the results of the filters with a limit of 25 fields.</p>
+        </div>  
+        <hr>      
+        <div id="export-schools">
+          <h3>Schools</h3>
+          <p>Currently all fields are exported according to the results of the filters with a limit of 25 fields.</p>
+        </div> 
+        <hr>       
+        <div id="export-districts">
+          <h3>Districts</h3>
+          <p>Currently all fields are exported according to the results of the filters with a limit of 25 fields.</p>
+        </div>
+      </div>
+      <hr>
+      <div id="user">
+        <h2>Users</h2>
+        <p>Master User is created upon migration of the database with master@example.com</p>
+        <div id="user-master">
+          <h3>Master</h3>
+          <p>Master has access to all actions from the following resources:</p>
+          <pre>
+            :users
+            :contacts
+            :contact_imports
+            :schools
+            :school_imports
+            :districts
+            :district_imports
+            :acceptable_contact_roles
+            :acceptable_contact_positions
+            :acceptable_contact_salutations
+          </pre>
+        </div>
+        <hr>
+        <div id="user-contact-editing">
+          <h3>Contact Editing</h3>
+          <p>Contact Editing has access to the following actions from the following resources:</p>
+          <pre>
+            :contacts
+              index -> only list of incomplete records where at least one field is missing with a limit of 10
+              show -> only contacts that have incomplete records
+              update -> only fields that are blank
+          </pre>
+        </div>
+        <hr>
+        <div id="user-data-entry">
+          <h3>Data Entry</h3>
+          <p>Data Entry has access to the following actions from the following resources:</p>
+          <pre>
+            :contacts
+              create -> will not be able to view created items, unless ownership relations are made
+          </pre>
+        </div>
+      </div>
+      <hr>
+      <div id="filter">
+        <h2>Filter</h2>
+        <p>Filters consist of selects for exact matches, search fields for %like% matches, and greater than or equal to and/or less than or equal to for numeric fields.</p>
+        <div id="filter-contacts">
+          <h3>Contact</h3>
+          <p>The following list shows the types of filters:
+          <pre>
+            :fname -> contains
+            :lname -> contains
+            :email -> contains
+            :salutation -> equals list from AcceptableContactSalutation model
+            :position -> equals list from AcceptableContactPosition model
+            :role -> equals list from AcceptableContactRole model
+            :school_id -> equals list from School model
+            :school_district_id -> equals list from District model through School model
+            :reference_url -> contains
+            :updated_by -> contains
+          </pre>
+        </div>  
+        <hr>      
+        <div id="filter-schools">
+          <h3>School</h3>
+          <p>The following list shows the types of filters:
+          <p><span class="label label-warning">The :student_teacher_ratio field is a string field and only allows contains filters.</span></p>
+          <pre>
+            :state -> equals list of states created in helper method
+            :district_name -> equals list from District model
+            :name -> contains
+            :state_rank -> greater than or equal to and/or less than or equal to
+            :national_rank -> greater than or equal to and/or less than or equal to
+            :college_readiness_score -> greater than or equal to and/or less than or equal to
+            :tested_ap_ib ->mgreater than or equal to and/or less than or equal to
+            :pass_ap_ib -> greater than or equal to and/or less than or equal to
+            :math_score -> greater than or equal to and/or less than or equal to
+            :math_proficient -> greater than or equal to and/or less than or equal to
+            :math_not_proficient -> greater than or equal to and/or less than or equal to
+            :reading_score -> greater than or equal to and/or less than or equal to
+            :reading_proficient -> greater than or equal to and/or less than or equal to
+            :reading_not_proficient -> greater than or equal to and/or less than or equal to
+            :student_teacher_ratio -> contains
+            :total_enrollment -> greater than or equal to and/or less than or equal to
+            :total_economically_disadvantaged -> greater than or equal to and/or less than or equal to
+            :receives_title_i_funding -> true or false
+            :ap_student_performance_participation_rate -> greater than or equal to and/or less than or equal to
+            :ap_student_performance_participant_passing_rate -> greater than or equal to and/or less than or equal to
+            :ap_student_performance_exam_per_test_taker -> greater than or equal to and/or less than or equal to
+            :ap_student_performance_exam_pass_rate -> greater than or equal to and/or less than or equal to
+          </pre>
+        </div>  
+        <hr>      
+        <div id="filter-districts">
+          <h3>Districts</h3>
+          <p>The following list shows the types of filters:
+          <pre>
+            :state -> equals list of states created in helper method
+            :name -> contains
+            :college_readiness_score -> greater than or equal to and/or less than or equal to
+            :tested_ap -> greater than or equal to and/or less than or equal to
+            :passed_ap -> greater than or equal to and/or less than or equal to
+            :math_score -> greater than or equal to and/or less than or equal to
+            :math_proficient -> greater than or equal to and/or less than or equal to
+            :math_not_proficient -> greater than or equal to and/or less than or equal to
+            :reading_score -> greater than or equal to and/or less than or equal to
+            :reading_proficient -> greater than or equal to and/or less than or equal to
+            :reading_not_proficient -> greater than or equal to and/or less than or equal to
+          </pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
