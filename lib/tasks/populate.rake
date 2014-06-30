@@ -11,7 +11,7 @@ namespace :db do
       )
     end
 
-    20.times do |n|
+    10.times do |n|
       puts "[DEBUG] creating position #{n+1} of 20"
       position = Faker::Name.title
       AcceptableContactPosition.create!( 
@@ -19,7 +19,7 @@ namespace :db do
       )
     end
 
-    20.times do |n|
+    10.times do |n|
       puts "[DEBUG] creating role #{n+1} of 20"
       role = Faker::Commerce.department
       AcceptableContactRole.create!( 
@@ -120,6 +120,8 @@ namespace :db do
         fname = Faker::Name.first_name
         lname = Faker::Name.last_name
         email = Faker::Internet.email
+        url = Faker::Internet.url
+        updated = "master@example.com"
         salutation = AcceptableContactSalutation.order("RANDOM()").first
         position = AcceptableContactPosition.order("RANDOM()").first
         role = AcceptableContactRole.order("RANDOM()").first
@@ -131,7 +133,9 @@ namespace :db do
         salutation: salutation.salutation,
         position: position.position,
         role: role.role,
-        school_id: school.id
+        school_id: school.id,
+        reference_url: url,
+        updated_by: updated
       )
     end
 

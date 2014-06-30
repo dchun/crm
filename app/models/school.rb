@@ -7,7 +7,7 @@ class School < ActiveRecord::Base
   validate :similar_school_names
 
   geocoded_by :address
-  # after_validation :geocode, :if => :address_changed?
+  after_validation :geocode, :if => :address_changed?
 
   def address
     "#{street_address}, #{city}, #{state}, #{zip}"
