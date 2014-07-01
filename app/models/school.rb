@@ -41,8 +41,8 @@ class School < ActiveRecord::Base
   end
 
   def self.with_contacts
-    joins(:contacts).select('schools.*, count(distinct contacts.id) as contacts_count')
-    .uniq
+    select('schools.*, count(contacts.id) as contacts_count')
+    .joins('LEFT OUTER JOIN contacts ON contacts.school_id = schools.id')
     .group('schools.id')
   end
 end

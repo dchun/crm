@@ -15,9 +15,9 @@ class District < ActiveRecord::Base
   end
 
   def self.with_all
-    joins(schools: :contacts)
-    .select('districts.*, count(distinct schools.id) as schools_count, count(distinct contacts.id) as contacts_count')
-    .uniq
+    select('districts.*, count(schools.id) as schools_count, count(contacts.id) as contacts_count')
+    .joins('LEFT OUTER JOIN schools ON schools.district_id = districts.id')
+    .joins('LEFT OUTER JOIN contacts ON contacts.school_id = schools.id')
     .group('districts.id')
   end
 end

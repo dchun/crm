@@ -87,14 +87,6 @@
       <dd><%= @school.district.reading_not_proficient %></dd>
     <% end %>
     </dl>
-
-    <span class="label">Nearby Schools</span>
-    <dl class="dl-horizontal">
-      <% for school in @school.nearbys(1000) %>
-        <dt><strong><%= school.distance.round(2) %> miles</strong></dt>
-        <dd><%= link_to school.address, school %></dd>
-      <% end %>
-    </dl>
   </div>
 </div>
 
