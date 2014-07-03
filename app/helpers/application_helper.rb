@@ -21,4 +21,12 @@ module ApplicationHelper
     end
     flash_messages.join("\n").html_safe
   end
+
+  def perc(value)
+    if value.is_a? Float
+      value.to_s + "%"
+    else
+      value
+    end
+  end
 end

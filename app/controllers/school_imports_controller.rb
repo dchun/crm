@@ -13,7 +13,7 @@ class SchoolImportsController < ApplicationController
       render :new
     end 
   rescue
-    flash[:error] = "Something seems to be wrong. Did you forget to upload a file?"
+    flash[:error] = "Something seems to be wrong. Did you forget to upload a file? Did you make sure all headers conform to the list below?"
     redirect_to(:action => 'new')
   end
 end
