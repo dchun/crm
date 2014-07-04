@@ -7,7 +7,7 @@ class SchoolsController < ApplicationController
   def index
     @search = School.with_contacts.search(params[:q])
 
-    @order =  (params[:q] && params[:q][:s]) ? params[:q][:s] : 'name asc'
+    @order = (params[:q] && params[:q][:s]) ? params[:q][:s] : 'name asc'
 
     @schools = @search.result.order(@order).page(params[:page]).per(25)
     respond_to do |format|

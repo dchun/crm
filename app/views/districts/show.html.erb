@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h2>District of <%= @district.name %></h2>
+  <h2><%= @district.name %> District</h2>
 </div>
 
 <div class="row">
@@ -32,54 +32,54 @@
 <span class="label">Schools in District</span>
   <thead>
     <tr>
-      <th><%= link_to "State", "#", data: { toggle: :tooltip, placement: :top, title: "State" } %></th>
-      <th><%= link_to "Name", "#", data: { toggle: :tooltip, placement: :top, title: "School Name" } %></th>
-      <th><%= link_to "SR", "#", data: { toggle: :tooltip, placement: :top, title: "State Rank" } %></th>
-      <th><%= link_to "NR", "#", data: { toggle: :tooltip, placement: :top, title: "National Rank" } %></th>
-      <th><%= link_to "CRS", "#", data: { toggle: :tooltip, placement: :top, title: "College Readiness Score" } %></th>
-      <th><%= link_to "TIB", "#", data: { toggle: :tooltip, placement: :top, title: "% Tested AP/IB" } %></th>
-      <th><%= link_to "PIB", "#", data: { toggle: :tooltip, placement: :top, title: "% Passed AP/IB" } %></th>
-      <th><%= link_to "MS", "#", data: { toggle: :tooltip, placement: :top, title: "Math Score" } %></th>
-      <th><%= link_to "MP", "#", data: { toggle: :tooltip, placement: :top, title: "Math Proficient %" } %></th>
-      <th><%= link_to "MnP", "#", data: { toggle: :tooltip, placement: :top, title: "Math Not Proficient %" } %></th>
-      <th><%= link_to "RS", "#", data: { toggle: :tooltip, placement: :top, title: "Reading Score" } %></th>
-      <th><%= link_to "RP", "#", data: { toggle: :tooltip, placement: :top, title: "Reading Proficient %" } %></th>
-      <th><%= link_to "RnP", "#", data: { toggle: :tooltip, placement: :top, title: "Reading Not Proficient %" } %></th>
-      <th><%= link_to "STR", "#", data: { toggle: :tooltip, placement: :top, title: "Student/Teacher Ratio" } %></th>
-      <th><%= link_to "TE", "#", data: { toggle: :tooltip, placement: :top, title: "Total Enrollment" } %></th>
-      <th><%= link_to "TED", "#", data: { toggle: :tooltip, placement: :top, title: "Total Economically Disadvantaged" } %></th>
-      <th><%= link_to "RTIF", "#", data: { toggle: :tooltip, placement: :top, title: "Receives Title I Funding" } %></th>
-      <th><%= link_to "PR", "#", data: { toggle: :tooltip, placement: :top, title: "AP Student Performance: Participation Rate" } %></th>
-      <th><%= link_to "PPR", "#", data: { toggle: :tooltip, placement: :top, title: "AP Student Performance: Participant Passing Rate" } %></th>
-      <th><%= link_to "EPT", "#", data: { toggle: :tooltip, placement: :top, title: "AP Student Performance: Exam Per Test Taker" } %></th>
-      <th><%= link_to "EPR", "#", data: { toggle: :tooltip, placement: :top, title: "AP Student Performance: Exam Pass Rate" } %></th>
-      <th><%= link_to "Updated", "#", data: { toggle: :tooltip, placement: :top, title: "Updated At" } %></th>
+      <th class="span2"><%= sort_link @search, :state, "State", {}, data: { toggle: :tooltip, placement: :top, title: "State" } %></th>
+      <th><%= sort_link @search, :name, "Name", {}, data: { toggle: :tooltip, placement: :top, title: "School Name" } %></th>
+      <th class="span1"><%= sort_link @search, :state_rank, "SR", {}, data: { toggle: :tooltip, placement: :top, title: "State Rank" } %></th>
+      <th class="span1"><%= sort_link @search, :national_rank, "NR", {}, data: { toggle: :tooltip, placement: :top, title: "National Rank" } %></th>
+      <th class="span1"><%= sort_link @search, :college_readiness_score, "CRS", {}, data: { toggle: :tooltip, placement: :top, title: "College Readiness Score" } %></th>
+      <th class="span1"><%= sort_link @search, :tested_ap_ib, "TIB", {}, data: { toggle: :tooltip, placement: :top, title: "% Tested AP/IB" } %></th>
+      <th class="span1"><%= sort_link @search, :pass_ap_ib, "PIB", {}, data: { toggle: :tooltip, placement: :top, title: "% Passed AP/IB" } %></th>
+      <th class="span1"><%= sort_link @search, :math_score, "MS", {}, data: { toggle: :tooltip, placement: :top, title: "Math Score" } %></th>
+      <th class="span1"><%= sort_link @search, :math_proficient, "MP", {}, data: { toggle: :tooltip, placement: :top, title: "Math Proficient %" } %></th>
+      <th class="span1"><%= sort_link @search, :math_not_proficient, "MnP", {}, data: { toggle: :tooltip, placement: :top, title: "Math Not Proficient %" } %></th>
+      <th class="span1"><%= sort_link @search, :reading_score, "RS", {}, data: { toggle: :tooltip, placement: :top, title: "Reading Score" } %></th>
+      <th class="span1"><%= sort_link @search, :reading_proficient, "RP", {}, data: { toggle: :tooltip, placement: :top, title: "Reading Proficient %" } %></th>
+      <th class="span1"><%= sort_link @search, :reading_not_proficient, "RnP", {}, data: { toggle: :tooltip, placement: :top, title: "Reading Not Proficient %" } %></th>
+      <th class="span1"><%= sort_link @search, :student_teacher_ratio, "STR", {}, data: { toggle: :tooltip, placement: :top, title: "Student/Teacher Ratio" } %></th>
+      <th class="span1"><%= sort_link @search, :total_enrollment, "TE", {}, data: { toggle: :tooltip, placement: :top, title: "Total Enrollment" } %></th>
+      <th class="span1"><%= sort_link @search, :total_economically_disadvantaged, "TED", {}, data: { toggle: :tooltip, placement: :top, title: "Total Economically Disadvantaged" } %></th>
+      <th class="span2"><%= sort_link @search, :receives_title_i_funding, "RTIF", {}, data: { toggle: :tooltip, placement: :top, title: "Receives Title I Funding" } %></th>
+      <th class="span1"><%= sort_link @search, :ap_student_performance_participation_rate, "PR", {}, data: { toggle: :tooltip, placement: :top, title: "AP Student Performance: Participation Rate" } %></th>
+      <th class="span1"><%= sort_link @search, :ap_student_performance_participant_passing_rate, "PPR", {}, data: { toggle: :tooltip, placement: :top, title: "AP Student Performance: Participant Passing Rate" } %></th>
+      <th class="span1"><%= sort_link @search, :ap_student_performance_exam_per_test_taker, "EPT", {}, data: { toggle: :tooltip, placement: :top, title: "AP Student Performance: Exam Per Test Taker" } %></th>
+      <th class="span1"><%= sort_link @search, :ap_student_performance_exam_pass_rate, "EPR", {}, data: { toggle: :tooltip, placement: :top, title: "AP Student Performance: Exam Pass Rate" } %></th>
+      <th>Updated</th>
     </tr>
   </thead>
   <tbody>
-  <% @district.schools.each do |school| %>
+  <% @district_schools.each do |school| %>
     <tr>      
       <td><%= school.state %></td>
       <td><%= link_to school.name, school_path(school) %></td>
       <td><%= school.state_rank %></td>
       <td><%= school.national_rank %></td>
       <td><%= school.college_readiness_score %></td>
-      <td><%= school.tested_ap_ib %></td>
-      <td><%= school.pass_ap_ib %></td>
+      <td><%= perc school.tested_ap_ib %></td>
+      <td><%= perc school.pass_ap_ib %></td>
       <td><%= school.math_score %></td>
-      <td><%= school.math_proficient %></td>
-      <td><%= school.math_not_proficient %></td>
+      <td><%= perc school.math_proficient %></td>
+      <td><%= perc school.math_not_proficient %></td>
       <td><%= school.reading_score %></td>
-      <td><%= school.reading_proficient %></td>
-      <td><%= school.reading_not_proficient %></td>
+      <td><%= perc school.reading_proficient %></td>
+      <td><%= perc school.reading_not_proficient %></td>
       <td><%= school.student_teacher_ratio %></td>
       <td><%= school.total_enrollment %></td>
-      <td><%= school.total_economically_disadvantaged %></td>
+      <td><%= perc school.total_economically_disadvantaged %></td>
       <td><%= school.receives_title_i_funding %></td>
-      <td><%= school.ap_student_performance_participation_rate %></td>
-      <td><%= school.ap_student_performance_participant_passing_rate %></td>
+      <td><%= perc school.ap_student_performance_participation_rate %></td>
+      <td><%= perc school.ap_student_performance_participant_passing_rate %></td>
       <td><%= school.ap_student_performance_exam_per_test_taker %></td>
-      <td><%= school.ap_student_performance_exam_pass_rate %></td>
+      <td><%= perc school.ap_student_performance_exam_pass_rate %></td>
       <td><%= school.updated_at.strftime("%B %d, %Y") %></td>
     </tr>
   <% end %>

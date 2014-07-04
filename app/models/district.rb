@@ -1,26 +1,18 @@
 class District < ActiveRecord::Base
   has_many :schools
-  # has_many :contacts, through: :schools
 
   validates_presence_of :name
   validates_presence_of :state
 
-  def self.to_csv(options = {})
-    CSV.generate(options) do |csv|
-      csv << column_names
-      all.each do |district|
-        csv << district.attributes.values_at(*column_names)
-      end
-    end
-  end
-
+  # Include count of Schools and Contacts in District
   def self.with_all
-    select('districts.*, count(schools.id) as schools_count, count(contacts.id) as contacts_count')
-    .joins('LEFT OUTER JOIN schools ON schools.district_id = districts.id')
-    .joins('LEFT OUTER JOIN contacts ON contacts.school_id = schools.id')
+    select('districts.*, count(distinct s.id) as schools_count, count(distinct c.id) as contacts_count')
+    .joins('LEFT OUTER JOIN schools s ON s.district_id = districts.id')
+    .joins('LEFT OUTER JOIN contacts c ON c.school_id = s.id')
     .group('districts.id')
   end
 
+  # Convert float setters
   def convert_string(string)
     case string
     when "N/A" then string = 10000
@@ -30,7 +22,6 @@ class District < ActiveRecord::Base
     end   
   end
 
-  # Convert float setters
   def college_readiness_score=(new_college_readiness_score)
     write_attribute( :college_readiness_score, convert_string(new_college_readiness_score) )  
   end
@@ -67,6 +58,7 @@ class District < ActiveRecord::Base
     write_attribute( :reading_not_proficient, convert_string(new_reading_not_proficient) )
   end
 
+  # Convert float getters
   def convert_float(float)
     case float
     when 10000 then float = "N/A"
@@ -76,7 +68,6 @@ class District < ActiveRecord::Base
     end   
   end
 
-  # Convert float getters
   def college_readiness_score
     convert_float( read_attribute(:college_readiness_score) )
   end
@@ -111,5 +102,15 @@ class District < ActiveRecord::Base
 
   def reading_not_proficient
     convert_float( read_attribute(:reading_not_proficient) )
+  end
+
+  # Export Function
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |district|
+        csv << district.attributes.values_at(*column_names)
+      end
+    end
   end
 end

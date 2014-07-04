@@ -21,6 +21,8 @@ gem 'ransack', '~> 1.2.3' # For data filtering
 gem 'kaminari' # Table pagination
 gem 'bootstrap-kaminari-views'
 gem 'faker', '~> 1.3.0' # Populate database with random data
+gem 'delayed_job_active_record' # Run background jobs
+gem 'delayed_job_web' # Display background jobs
 
 group :production do
   gem 'rails_12factor' # Asset precompiler for heroku

@@ -1,0 +1,28 @@
+<table class="table table-sthiped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Path</th>
+      <th>Results</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @file_imports.each do |file_import| %>
+    <tr>
+      <td><%= file_import.id %></td>
+      <td><%= link_to file_import.file_name, file_import_path(file_import) %></td>
+      <td><%= file_import.file_path %></td>
+      <td><%= file_import.results %></td>
+      <td>
+        <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                    file_import_path(file_import),
+                    :method => :delete,
+                    :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                    :class => 'btn btn-mini btn-danger' %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+

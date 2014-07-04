@@ -20,6 +20,8 @@ class DistrictsController < ApplicationController
   # GET /districts/1
   # GET /districts/1.json
   def show
+    @search = District.find(params[:id]).schools.search(params[:q])
+    @district_schools = @search.result
   end
 
   # GET /districts/new

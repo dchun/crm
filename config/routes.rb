@@ -11,5 +11,7 @@ Rails.application.routes.draw do
   resources :acceptable_contact_roles
   resources :acceptable_contact_positions
   resources :acceptable_contact_salutations
+  resources :file_imports
+  match "/delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]
 end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140630020250) do
+ActiveRecord::Schema.define(version: 20140704015435) do
 
   create_table "acceptable_contact_positions", force: true do |t|
     t.string   "position"
@@ -48,6 +48,22 @@ ActiveRecord::Schema.define(version: 20140630020250) do
 
   add_index "contacts", ["school_id"], name: "index_contacts_on_school_id"
 
+  create_table "delayed_jobs", force: true do |t|
+    t.integer  "priority",   default: 0, null: false
+    t.integer  "attempts",   default: 0, null: false
+    t.text     "handler",                null: false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
+
   create_table "districts", force: true do |t|
     t.string   "state"
     t.string   "name"
@@ -62,6 +78,14 @@ ActiveRecord::Schema.define(version: 20140630020250) do
     t.float    "reading_not_proficient"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "file_imports", force: true do |t|
+    t.string   "file_name"
+    t.string   "file_path"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "results"
   end
 
   create_table "schools", force: true do |t|
