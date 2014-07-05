@@ -6,14 +6,19 @@ class ContactImportsController < ApplicationController
   end
 
   def create
-    @contact_import = ContactImport.new(params[:contact_import])
-    if @contact_import.save
-      redirect_to contacts_url, notice: "Imported contacts."
-    else
-      render :new
-    end
+    fileimport = FileImport.new
+    name = params[:contact_import][:file].original_filename
+    dir = "public/files/upload/#{Time.now.to_i}"
+    Dir.mkdir(dir) unless File.exists?(dir)
+    path = File.join(dir, name)
+    File.open(path, "wb") { |f| f.write(params[:contact_import][:file].read) }
+    fileimport.file_name = name
+    fileimport.file_path = path
+    fileimport.save
+    Contact.delay.import(fileimport.id)
+    redirect_to contacts_path, notice: "Contacts Import added to #{view_context.link_to 'queue', delayed_job_path}. You can view the status #{view_context.link_to 'here', file_import_path(fileimport.id)} when finished."
   rescue
-    flash[:error] = "Something seems to be wrong. Did you forget to upload a file? Also, if ID column is present make sure all fields are filled in. Perhaps you forgot to fill in all school fields?"
-    redirect_to(:action => 'new')
+    flash[:error] = "Something seems to be wrong. Did you forget to upload a file?"
+    redirect_to(:action => 'new') 
   end
 end

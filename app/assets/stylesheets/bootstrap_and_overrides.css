@@ -39,6 +39,11 @@ th input[type="number"] {
 	margin-bottom: 0px;
 }
 
+.required:after {
+  content:"*";
+  color:red;
+}
+
 footer {
 	margin-top: 20px;
 	text-align: center;

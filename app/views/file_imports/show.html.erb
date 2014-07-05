@@ -1,3 +1,12 @@
-<p>Name: <%= @file_import.file_name %></p>
-<p>Path: <%= @file_import.file_path %></p>
-<p>Status: <%= @file_import.results %></p>
+<div class="page-header">
+  <h1>Imported File</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong>Name</strong></dt>
+  <dd> <%= @file_import.file_name %></dd>  
+  <dt><strong>Path</strong></dt>
+  <dd> <%= @file_import.file_path %></dd>  
+  <dt><strong>Status</strong></dt>
+  <dd> <%= simple_format @file_import.results %></dd>
+</dl>

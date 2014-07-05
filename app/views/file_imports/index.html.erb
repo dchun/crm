@@ -1,4 +1,7 @@
-<table class="table table-sthiped">
+<div class="page-header">
+  <h1>File Imports</h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>ID</th>
@@ -13,7 +16,7 @@
       <td><%= file_import.id %></td>
       <td><%= link_to file_import.file_name, file_import_path(file_import) %></td>
       <td><%= file_import.file_path %></td>
-      <td><%= file_import.results %></td>
+      <td><%= file_import.results.truncate(200) if file_import.results %></td>
       <td>
         <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                     file_import_path(file_import),

@@ -231,20 +231,22 @@ class School < ActiveRecord::Base
         school.id? ? updatecount += 1 : newcount += 1
         school.attributes = row.to_hash.slice(*School.attribute_names())
       end
-      district = District.find_by_name(row["district"]) || District.new(:name => row["district"])
-      district.id? ? updateddistrict += 1 : newdistrict += 1
-      school.district = district
+      if row["district_name"].present?
+        district = District.find_by_name(row["district_name"]) || District.new(:name => row["district_name"])
+        district.id? ? updateddistrict += 1 : newdistrict += 1
+        school.district = district
+      end
 
       # Validate school and save or raise error
       if school.valid?
         school.save
       else
         school.errors.full_messages.each do |message|
-          errors << "Row #{i+2}: #{message}"
+          errors << "Row #{i}: #{message} \r\n"
         end
       end
     end
-    results = "#{newcount} New Schools.\n\n#{updatecount} Schools Updated.\n\n#{newdistrict} New Districts.\n\n#{updateddistrict} Added to Schools.\n\n#{errors}"
+    results = "#{newcount} New Schools.\r\n#{updatecount} Schools Updated.\r\n#{newdistrict} New Districts.\r\n#{updateddistrict} Districts added to Schools.\r\n#{errors}"
     fileimport.update(results: results)
   end
 

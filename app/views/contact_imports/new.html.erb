@@ -14,16 +14,22 @@
 <p>A CSV or Excel file can be used to import records. The first row should be the column name. The following columns are allowed.</p>
 
 <ul>
-  <% Contact.columns.each do |column| %>
-    <li>
-      <strong><%= column.name %></strong> -
-      <%= column.type.to_s.titleize %> type
-    </li>
-  <% end %>
+<li><strong>id</strong> - Integer type: <code>first check - if id present? update else new Contact</code></li>
+<li><strong>fname</strong><span class="required"></span> - String type</li>
+<li><strong>lname</strong> - String type</li>
+<li><strong>email</strong><span class="required"></span> - String type: <code>second check - if email present? update else new Contact</code></li>
+<li><strong>salutation</strong><span class="required"></span> - String type: <code>must be in AcceptableContactSalutations</code></li>
+<li><strong>position</strong><span class="required"></span> - String type: <code>must be in AcceptableContactPositions</code></li>
+<li><strong>role</strong><span class="required"></span> - String type: <code>must be in AcceptableContactRoles</code></li>
+<li><strong>school_name</strong><span class="required"></span> - String type: <code>if school_name exists? add school_id else new School</code></li>
+<li><strong>created_at</strong> - Datetime type</li>
+<li><strong>updated_at</strong> - Datetime type</li>
+<li><strong>reference_url</strong> - String type</li>
+<li><strong>updated_by</strong> - String type</li>
 </ul>
 
-<p>If an <strong>id</strong> is supplied it will update the matching record, else if id column is missing <strong>email</strong> will be used to update the matching record instead of creating a new one.</p>
-<p>All School fields must be filled in.</p>
+<h4>Required Items</h4>
+<p>Items starred with a red asterisk <span class="required"></span> are required</p>
 
 <%= form_for @contact_import do |f| %>
   <div class="field">
