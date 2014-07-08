@@ -22,7 +22,7 @@
 
   <div class="span6 ml30">
     <span class="label">School Details</span>
-    <dl class="dl-horizontal large">
+    <dl class="dl-horizontal medium">
     <% if @contact.school.present? %>
       <dt><strong>School Name</strong></dt>
       <dd><%= link_to @contact.school.name, school_path(@contact.school) %></dd>
@@ -78,6 +78,9 @@
       <dd><%= @contact.school.ap_student_performance_exam_per_test_taker %></dd>
       <dt><strong>AP Student Performance Exam Pass Rate</strong></dt>
       <dd><%= @contact.school.ap_student_performance_exam_pass_rate %></dd>
+    <% else %>
+      <dt><strong>Temporary School Name</strong></dt>
+      <dd><div class="red"><%= @contact.temp_school_name %></div></dd>
     <% end %>
     </dl>
 

@@ -17,7 +17,7 @@
       <th class="span1"><%= sort_link @search, :reading_proficient, "RP", {}, data: { toggle: :tooltip, placement: :top, title: "Reading Proficient %" } %></th>
       <th class="span1"><%= sort_link @search, :reading_not_proficient, "RnP", {}, data: { toggle: :tooltip, placement: :top, title: "Reading Not Proficient %" } %></th>
       <th class="span1"><%= sort_link @search, :schools_count, "Sch", {}, "#", data: { toggle: :tooltip, placement: :top, title: "Number of Schools in District" } %></th>
-      <th class="span1"><%= sort_link @search, :contacs_count, "Con", data: { toggle: :tooltip, placement: :top, title: "Number of Contacts in District" } %></th>
+      <th class="span1"><%= sort_link @search, :contacts_count, "Con", {}, "#", data: { toggle: :tooltip, placement: :top, title: "Number of Contacts in District" } %></th>
       <th><%= sort_link @search, :updated_at, "Updated", {}, data: { toggle: :tooltip, placement: :top, title: "Updated At" } %></th>
       <th class="span2"><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>

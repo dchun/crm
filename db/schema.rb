@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140704015435) do
+ActiveRecord::Schema.define(version: 20140708020814) do
 
   create_table "acceptable_contact_positions", force: true do |t|
     t.string   "position"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20140704015435) do
     t.datetime "updated_at"
     t.string   "reference_url"
     t.string   "updated_by"
+    t.string   "temp_school_name"
   end
 
   add_index "contacts", ["school_id"], name: "index_contacts_on_school_id"
@@ -80,12 +81,25 @@ ActiveRecord::Schema.define(version: 20140704015435) do
     t.datetime "updated_at"
   end
 
+  create_table "equivalent_terms", force: true do |t|
+    t.string   "input"
+    t.string   "output"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "file_imports", force: true do |t|
     t.string   "file_name"
     t.string   "file_path"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "results"
+  end
+
+  create_table "neglected_terms", force: true do |t|
+    t.string   "exclude"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "schools", force: true do |t|

@@ -6,10 +6,10 @@ class SchoolsController < ApplicationController
   # GET /schools.json
   def index
     @search = School.with_contacts.search(params[:q])
-
     @order = (params[:q] && params[:q][:s]) ? params[:q][:s] : 'name asc'
-
     @schools = @search.result.order(@order).page(params[:page]).per(25)
+    # @export_headers = params[:export]
+
     respond_to do |format|
       format.html
       format.csv { send_data @schools.to_csv }
@@ -69,6 +69,12 @@ class SchoolsController < ApplicationController
       format.html { redirect_to schools_url, notice: 'School was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def locate
+    schools = School.not_geocoded.limit(2500)
+    Delayed::Job.enqueue(GeocodeJob.new(schools.collect(&:id)), priority: 10)
+    redirect_to schools_path, notice: "2,500 Schools have been added to the #{view_context.link_to 'queue', delayed_job_path}. If there aren't any other workers, the job will finish in roughly 45 minutes. Please wait a full 24 hours to geocde the next batch."
   end
 
   private

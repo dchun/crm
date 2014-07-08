@@ -6,16 +6,10 @@ class Contact < ActiveRecord::Base
   validates_presence_of :salutation
   validates_presence_of :position
   validates_presence_of :role
-  validates_presence_of :school
 
   validates_inclusion_of :salutation, in: :acceptable_salutation_list
   validates_inclusion_of :position, in: :acceptable_position_list
   validates_inclusion_of :role, in: :acceptable_role_list
-
-  validates_inclusion_of :school_first_downcase, 
-                         message: "may be duplicate, check against School names",
-                         in: :school_first_downcase_list, 
-                         unless: :school_full_match
 
   after_validation :set_record_complete
 
@@ -26,6 +20,20 @@ class Contact < ActiveRecord::Base
 
   def set_record_complete
     self.fname? && self.lname? && self.salutation? && self.position? && self.role? && self.reference_url? ? self.complete = true : self.complete = false 
+  end
+
+  # Convert salutation setters
+  def convert_salutation(string)
+    case string
+    when "Mr" then string = "Mr."
+    when "Ms" then string = "Mrs."
+    when "Mrs" then string = "Mrs."
+    else string
+    end   
+  end
+
+  def salutation=(new_salutation)
+    write_attribute( :salutation, convert_salutation(new_salutation) )
   end
 
   def acceptable_salutation_list
@@ -43,19 +51,6 @@ class Contact < ActiveRecord::Base
     r_list.collect{ |r| r.role }
   end
 
-  def school_full_match
-    School.find_by_name(self.school.name) if self.school.present?
-  end
-
-  def school_first_downcase
-    s_name = self.school.name.split[0].downcase if self.school.present?
-  end
-
-  def school_first_downcase_list
-    s = School.all
-    s_list = s.collect{ |s| s.name.split[0].downcase }
-  end
-
   # Import Function
   def self.import(fileimportid)
     fileimport = FileImport.find(fileimportid)
@@ -64,10 +59,8 @@ class Contact < ActiveRecord::Base
 
     newcount = 0
     updatecount = 0
-    updating = false
-    newschool = 0
+    tempschool = 0
     updatedschool = 0
-    updatingschool = false
     errors = ""
 
     spreadsheet = open_spreadsheet(file_name, file_path)
@@ -86,9 +79,14 @@ class Contact < ActiveRecord::Base
         contact.attributes = row.to_hash.slice(*Contact.attribute_names())
       end
       if row["school_name"].present?
-        school = School.find_by_name(row["school_name"]) || School.new(:name => row["school_name"])
-        school.id? ? updatedschool += 1 : newschool += 1
-        contact.school = school
+        school = School.find_by_downcase_name(row["school_name"]) || School.find_by_equivalent_terms(row["school_name"]) || School.find_by_neglected_terms(row["school_name"]) || School.find_by_equivalent_and_neglected_terms(row["school_name"])
+        if school.present?
+          updatedschool += 1
+          contact.school = school
+        else
+          tempschool += 1
+          contact.temp_school_name = row["school_name"]
+        end
       end
 
       # Validate school and save or raise error
@@ -97,12 +95,12 @@ class Contact < ActiveRecord::Base
       else
         contact.id? ? updatecount -= 1 : newcount -= 1
         if row["school_name"].present?
-          school.id? ? updatedschool -= 1 : newschool -= 1
+          school.id? ? updatedschool -= 1 : tempschool -= 1
         end
         errors << "Row #{i}: #{contact.errors.full_messages.to_sentence}\r\n"
       end
     end
-    results = "#{newcount} New Contacts.\r\n#{updatecount} Contacts Updated.\r\n#{newschool} New Schools.\r\n#{updatedschool} Schools added to Contacts.\r\n#{errors}"
+    results = "#{newcount} New Contacts.\r\n#{updatecount} Contacts Updated.\r\n#{tempschool} Temporary Schools.\r\n#{updatedschool} existing Schools added to Contacts.\r\n#{errors}"
     fileimport.update(results: results)
   end
 

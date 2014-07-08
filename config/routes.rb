@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   resources :acceptable_contact_positions
   resources :acceptable_contact_salutations
   resources :file_imports
+  resources :neglected_terms
+  resources :equivalent_terms
+  get 'geocode' => 'schools#locate'
   match "/delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]
 end
+
 

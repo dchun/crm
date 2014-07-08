@@ -167,4 +167,38 @@
 
 <%= link_to "Import Schools", new_school_import_path, class: "btn btn-success" %>
 <%= link_to "Export Schools", schools_path(params.merge(format: "xls")), class: "btn btn-info" %>
+<%= link_to "Batch Geocode", geocode_path, class: "btn btn-warning" %>
+
+<!-- Button trigger modal -->
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"></span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+      <%= form_tag(schools_path, method: "post") do %>
+        <% School.column_names.each do |col| %>
+          <div class="checkbox">
+            <label>
+              <%= check_box_tag "[export][#{col}]" %>
+              <%= col %>
+            </label>
+          </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <%= submit_tag "Export", class: "btn btn-primary" %>
+      </div>
+      <% end %><!-- end form -->
+    </div>
+  </div>
+</div>
 

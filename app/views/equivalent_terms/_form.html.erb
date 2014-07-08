@@ -1,0 +1,31 @@
+<%= form_for @equivalent_term, :html => { :class => 'form-horizontal' } do |f| %>
+  <% if @equivalent_term.errors.any? %>
+    <div class="alert fade in alert-error"><button class="close" data-dismiss="alert">×</button>
+      <p><%= pluralize(@equivalent_term.errors.count, "error") %> prohibited this equivalent term from being saved:</p>
+
+      <ul>
+      <% @equivalent_term.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="control-group">
+    <%= f.label :input, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :input, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :output, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :output, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                equivalent_terms_path, :class => 'btn' %>
+  </div>
+<% end %>

@@ -45,8 +45,14 @@
         <td><%= contact.salutation %></td>
         <td><%= contact.position %></td>
         <td><%= contact.role %></td>
-        <td><%= contact.school.name if contact.school.present? %></td>
-        <td><%= contact.school.district.name if contact.school.district.present? %></td>
+        <td>
+        <% if contact.school.present? %>
+          <%= contact.school.name %>
+        <% else contact.temp_school_name.present? %>
+          <div class="red"><%= contact.temp_school_name %><div>
+        <% end %>
+        </td>
+        <td><%= contact.school.district.name if contact.school.present? && contact.school.district.present? %></td>
         <td><%= contact.reference_url %></td>
         <td><%= contact.updated_by %></td>
         <td><%= contact.updated_at.strftime("%B %d, %Y") %></td>
@@ -81,4 +87,6 @@
   <%= link_to "Salutations", acceptable_contact_salutations_path, class: "btn btn-default" %>
   <%= link_to "Positions", acceptable_contact_positions_path, class: "btn btn-default" %>
   <%= link_to "Roles", acceptable_contact_roles_path, class: "btn btn-default" %>
+  <%= link_to "Equivalent Terms", equivalent_terms_path, class: "btn btn-warning" %>
+  <%= link_to "Neglected Terms", neglected_terms_path, class: "btn btn-warning" %>
 <% end %>

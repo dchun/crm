@@ -4,13 +4,11 @@ class School < ActiveRecord::Base
 
   validates_presence_of :name
   validates_presence_of :district
-  # validate :similar_school_names
 
   geocoded_by :address
-  # after_validation :geocode, :if => :address_changed?
 
   def address
-    "#{street_address}, #{city}, #{state}, #{zip}"
+    "#{street_address}, #{city}"
   end
 
   def address_changed?
@@ -18,24 +16,50 @@ class School < ActiveRecord::Base
     attrs.any?{|a| send "#{a}_changed?"}
   end
 
-  # def similar_school_names
-  #   s = School.all
-  #   s_list = s.collect{ |s| s.name }
-  #   unless s_list.include?(self.name)
-  #     s_names = s.collect{ |s| s.name.split[0].downcase if s.name.present? }
-  #     if self.name.present?
-  #       if s_names.include? self.name.split[0].downcase
-  #         errors.add :possible_school_duplication, 'check name against list'
-  #       end
-  #     end
-  #   end
-  # end
-
   # Include count of Contacts in School
   def self.with_contacts
     select('schools.*, count(distinct c.id) as contacts_count')
     .joins('LEFT OUTER JOIN contacts c ON c.school_id = schools.id')
     .group('schools.id')
+  end
+
+  # New find methods
+  def self.find_by_downcase_name(name)
+    School.where("LOWER(name) = ?", name.downcase).first
+  end
+
+  def self.find_by_equivalent_terms(name)
+    et = EquivalentTerm.all
+    et.each {|replacement| name = name.gsub(replacement.input, replacement.output)}
+    School.where("LOWER(name) = ?", name.downcase).first
+  end
+
+  def self.find_by_neglected_terms(name)
+    nt = NeglectedTerm.all
+    nt.each {|n| name = name.gsub(n.exclude, '').squeeze(' ')}
+    sql = "REPLACE(schools.name, ' #{nt[0].exclude}', '')"
+    nt.drop(1).map do |n|
+      sql.prepend("REPLACE(") 
+      sql << ", ' #{n.exclude}', '')" 
+    end
+    sql.prepend("LOWER(")
+    sql << ") = '#{name.downcase}'"
+    School.where(sql).first
+  end
+
+  def self.find_by_equivalent_and_neglected_terms(name)
+    et = EquivalentTerm.all
+    et.each {|e| name = name.gsub(e.input, e.output)}
+    nt = NeglectedTerm.all
+    nt.each {|n| name = name.gsub(n.exclude, '').squeeze(' ')}
+    sql = "REPLACE(schools.name, ' #{nt[0].exclude}', '')"
+    nt.drop(1).map do |n|
+      sql.prepend("REPLACE(") 
+      sql << ", ' #{n.exclude}', '')" 
+    end
+    sql.prepend("LOWER(")
+    sql << ") = '#{name.downcase}'"
+    School.where(sql).first
   end
 
   # Convert float setters
@@ -210,10 +234,8 @@ class School < ActiveRecord::Base
 
     newcount = 0
     updatecount = 0
-    updating = false
     newdistrict = 0
     updateddistrict = 0
-    updatingdistrict = false
     errors = ""
 
     spreadsheet = open_spreadsheet(file_name, file_path)
@@ -241,6 +263,10 @@ class School < ActiveRecord::Base
       if school.valid?
         school.save
       else
+        school.id? ? updatecount -= 1 : newcount -= 1
+        if row["district_name"].present?
+          district.id? ? updateddistrict -= 1 : newdistrict -= 1
+        end
         school.errors.full_messages.each do |message|
           errors << "Row #{i}: #{message} \r\n"
         end

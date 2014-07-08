@@ -7,7 +7,7 @@
   */
 @media (min-width: 767px) {
 	dd {
-		height: 20px;
+		min-height: 20px;
 	}
 	.large dd {
 		margin-left: 420px !important;
@@ -42,6 +42,10 @@ th input[type="number"] {
 .required:after {
   content:"*";
   color:red;
+}
+
+.red {
+	color:red;
 }
 
 footer {

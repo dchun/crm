@@ -135,6 +135,7 @@ class District < ActiveRecord::Base
       if district.valid?
         district.save
       else
+        district.id? ? updatecount -= 1 : newcount -= 1
         district.errors.full_messages.each do |message|
           errors << "Row #{i}: #{message} \r\n"
         end
