@@ -95,7 +95,7 @@ class Contact < ActiveRecord::Base
       else
         contact.id? ? updatecount -= 1 : newcount -= 1
         if row["school_name"].present?
-          school.id? ? updatedschool -= 1 : tempschool -= 1
+          school.present? ? updatedschool -= 1 : tempschool -= 1
         end
         errors << "Row #{i}: #{contact.errors.full_messages.to_sentence}\r\n"
       end

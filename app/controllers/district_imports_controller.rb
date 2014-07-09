@@ -2,7 +2,6 @@ class DistrictImportsController < ApplicationController
   load_and_authorize_resource
   
   def new
-    @file_import = FileImport.new
   end
 
   def create
