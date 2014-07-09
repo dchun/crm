@@ -108,7 +108,7 @@ class District < ActiveRecord::Base
   def self.import(fileimportid)
     fileimport = FileImport.find(fileimportid)
     file_name = fileimport.file_name
-    file_path = fileimport.file_path
+    file_path = fileimport.file_path.url
 
     newcount = 0
     updatecount = 0

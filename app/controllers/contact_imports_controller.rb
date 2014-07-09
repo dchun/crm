@@ -2,18 +2,12 @@ class ContactImportsController < ApplicationController
   load_and_authorize_resource
   
   def new
-    @contact_import = ContactImport.new
   end
 
   def create
     fileimport = FileImport.new
-    name = params[:contact_import][:file].original_filename
-    dir = "public/files/upload/#{Time.now.to_i}"
-    Dir.mkdir(dir) unless File.exists?(dir)
-    path = File.join(dir, name)
-    File.open(path, "wb") { |f| f.write(params[:contact_import][:file].read) }
-    fileimport.file_name = name
-    fileimport.file_path = path
+    fileimport.file_name = params[:contact_import][:file].original_filename
+    fileimport.file_path = params[:contact_import][:file]
     fileimport.save
     Contact.delay.import(fileimport.id)
     redirect_to contacts_path, notice: "Contacts Import added to #{view_context.link_to 'queue', delayed_job_path}. You can view the status #{view_context.link_to 'here', file_import_path(fileimport.id)} when finished."
