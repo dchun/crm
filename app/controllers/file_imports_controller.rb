@@ -11,8 +11,6 @@ class FileImportsController < ApplicationController
 
   def destroy
     @file_import = FileImport.find(params[:id])
-    dir = @file_import.file_path.gsub(@file_import.file_name, "")
-    FileUtils.rm_rf(dir)
     @file_import.destroy
     respond_to do |format|
       format.html { redirect_to file_imports_url, notice: 'File Import was successfully destroyed.' }
