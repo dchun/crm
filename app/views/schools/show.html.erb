@@ -89,10 +89,10 @@
     </dl>
 
     <% if @school.geocoded? %>
-      <span class="label">Nearest Schools</span>
+      <span class="label">Nearest Schools (200 miles limit 12)</span>
       <dl class="dl-horizontal">
 
-        <% for school in @school.nearbys(50).limit(12) %>
+        <% for school in @school.nearbys(200).limit(12) %>
           <dt><strong><%= school.distance.round(2) %> miles</strong></dt>
           <dd><%= link_to school.name, school %></dd>
         <% end %>

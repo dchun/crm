@@ -19,29 +19,30 @@
 <li><strong>district_name</strong><span class="required"></span>  - String type: <code>if district_name exists? add district_id else new District</code></li>
 <li><strong>state_rank</strong> - Integer type: <code>converts strings that being with "#" to integer</code></li>
 <li><strong>national_rank</strong> - Integer type: <code>converts strings that being with "#" to integer</code></li>
-<li><strong>college_readiness_score</strong> - Float type: <code>connverts strings from allowed list to float</code></li>
-<li><strong>tested_ap_ib</strong> - Float type: <code>connverts strings from allowed list to float</code></li>
-<li><strong>pass_ap_ib</strong> - Float type: <code>connverts strings from allowed list to float</code></li>
-<li><strong>math_score</strong> - Float type: <code>connverts strings from allowed list to float</code></li>
-<li><strong>math_proficient</strong> - Float type: <code>connverts strings from allowed list to float</code></li>
-<li><strong>math_not_proficient</strong> - Float type: <code>connverts strings from allowed list to float</code></li>
-<li><strong>reading_score</strong> - Float type: <code>connverts strings from allowed list to float</code></li>
-<li><strong>reading_proficient</strong> - Float type: <code>connverts strings from allowed list to float</code></li>
-<li><strong>reading_not_proficient</strong> - Float type: <code>connverts strings from allowed list to float</code></li>
+<li><strong>college_readiness_score</strong> - Float type: <code>converts strings from allowed list to float</code></li>
+<li><strong>tested_ap_ib</strong> - Float type: <code>converts strings from allowed list to float</code></li>
+<li><strong>pass_ap_ib</strong> - Float type: <code>converts strings from allowed list to float</code></li>
+<li><strong>math_score</strong> - Float type: <code>converts strings from allowed list to float</code></li>
+<li><strong>math_proficient</strong> - Float type: <code>converts strings from allowed list to float</code></li>
+<li><strong>math_not_proficient</strong> - Float type: <code>converts strings from allowed list to float</code></li>
+<li><strong>reading_score</strong> - Float type: <code>converts strings from allowed list to float</code></li>
+<li><strong>reading_proficient</strong> - Float type: <code>converts strings from allowed list to float</code></li>
+<li><strong>reading_not_proficient</strong> - Float type: <code>converts strings from allowed list to float</code></li>
 <li><strong>student_teacher_ratio</strong> - String type</li>
 <li><strong>street_address</strong> - String type</li>
 <li><strong>city</strong> - String type</li>
 <li><strong>state</strong> - String type</li>
 <li><strong>zip</strong> - String type</li>
+<li><strong>city_state_zip</strong> - String type <code>overrides city and zip fields by extracting first string before comma as city, and removing all non-numeric characters as zip from the remaining string</code></li>
 <li><strong>latitude</strong> - Float type</li>
 <li><strong>longitude</strong> - Float type</li>
 <li><strong>total_enrollment</strong> - Integer type</li>
 <li><strong>total_economically_disadvantaged</strong> - Float type</li>
-<li><strong>receives_title_i_funding</strong> - Boolean type: <code>connverts "Yes", "No" to true, false</code></li>
-<li><strong>ap_student_performance_participation_rate</strong> - Float type: <code>connverts strings from allowed list to float</code></li>
-<li><strong>ap_student_performance_participant_passing_rate</strong> - Float type: <code>connverts strings from allowed list to float</code></li>
-<li><strong>ap_student_performance_exam_per_test_taker</strong> - Float type: <code>connverts strings from allowed list to float</code></li>
-<li><strong>ap_student_performance_exam_pass_rate</strong> - Float type: <code>connverts strings from allowed list to float</code></li>
+<li><strong>receives_title_i_funding</strong> - Boolean type: <code>converts "Yes", "No" to true, false</code></li>
+<li><strong>ap_student_performance_participation_rate</strong> - Float type: <code>converts strings from allowed list to float</code></li>
+<li><strong>ap_student_performance_participant_passing_rate</strong> - Float type: <code>converts strings from allowed list to float</code></li>
+<li><strong>ap_student_performance_exam_per_test_taker</strong> - Float type: <code>converts strings from allowed list to float</code></li>
+<li><strong>ap_student_performance_exam_pass_rate</strong> - Float type: <code>converts strings from allowed list to float</code></li>
 <li><strong>created_at</strong> - Datetime type</li>
 <li><strong>updated_at</strong> - Datetime type</li>
 </ul>

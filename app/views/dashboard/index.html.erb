@@ -38,38 +38,24 @@
     <div class="span9">
       <div id="import">
         <h2>Import</h2>
-        <p>There are three separate controllers that accesses the original model's validations to ensure proper data integrity.</p>
+        <p>For best results, add records in the following order</p>
+
+        <ol>
+        <li>Districts</li>
+        <li>Schools</li>
+        <h5>Add below fields inidividually before importing contacts</h5>
+        <ul>
+          <li>Equivalent Terms</li>
+          <li>Neglected Terms</li>
+          <li>Acceptable Contact Salutations</li>
+          <li>Acceptable Contact Positions</li>
+          <li>Acceptable Contact Roles</li>
+        </ul>
+        <li>Contacts</li>
+        </ol>
 
         <div id="import-contacts">
           <h3>Contacts</h3>
-          <p>It is recommended that Schools be imported prior to Contacts and Districts before Schools</p>
-
-          <p>A validation against existing school names currently exists but may require refinement <code>:school_first_downcase</code></p>
-
-          <p><code>:school_first_downcase</code> matches the names in the <code>school</code> field of the import table from an excel file against existing school names in the database. If a perfect match is found, the relation is made and the <code>school_id</code> is stored in the contacts database. If a match is not found, the validation will be processed with the following:</p>
-         
-          <span class="label label-warning">This may be problematic since the downcased first name of many schools may be the same.</span>
-          <pre>
-            validates_inclusion_of :school_first_downcase, 
-                           message: "may be duplicate, check against School names",
-                           in: :school_first_downcase_list, 
-                           unless: :school_full_match
-
-            def school_full_match
-              School.find_by_name(self.school.name) if self.school.present?
-            end
-
-            def school_first_downcase
-              s_name = self.school.name.split[0].downcase if self.school.present?
-            end
-
-            def school_first_downcase_list
-              s = School.all
-              s_list = s.collect{ |s| s.name.split[0].downcase }
-            end
-          </pre>
-
-          <p>All Fields are required along with the contact salutation, role, and position since the names must be validated against a pre-approved list.</p>
 
           <p>Find a list of allowable fields <%= link_to "here", new_contact_import_path %>.</p>
         </div>
@@ -78,18 +64,14 @@
         
         <div id="import-schools">
           <h3>Schools</h3>
-          <p>Currently only the school name and district name is required for the import function to pass all validations for schools.</p>
-
-          <p>Similar to the way in which the contacts_import model uses the conacts model to validate against the schools table, the school name field is validated against existing school names in the same table.</p>
-
-          <p>Schools will be geocoded upon import of addresses and must respect the API limits of the services, a list of which can be found <%= link_to "here", "https://github.com/alexreisner/geocoder#street-address-services" %>.</p>
+          <p>Find a list of allowable fields <%= link_to "here", new_school_import_path %>.</p>
         </div>
 
         <hr>
         
         <div id="import-districts">
           <h3>Districts</h3>
-          <p>Districts only validate the presence of the name and state.</p>
+          <p>Find a list of allowable fields <%= link_to "here", new_district_import_path %>.</p>
         </div>
       </div>
       <hr>

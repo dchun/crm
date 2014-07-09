@@ -8,7 +8,7 @@ class School < ActiveRecord::Base
   geocoded_by :address
 
   def address
-    "#{street_address}, #{city}"
+    "#{street_address}, #{city}, #{state}, #{zip}"
   end
 
   def address_changed?
@@ -37,10 +37,10 @@ class School < ActiveRecord::Base
   def self.find_by_neglected_terms(name)
     nt = NeglectedTerm.all
     nt.each {|n| name = name.gsub(n.exclude, '').squeeze(' ')}
-    sql = "REPLACE(schools.name, ' #{nt[0].exclude}', '')"
+    sql = "REPLACE(schools.name, '#{nt[0].exclude}', '')"
     nt.drop(1).map do |n|
       sql.prepend("REPLACE(") 
-      sql << ", ' #{n.exclude}', '')" 
+      sql << ", '#{n.exclude}', '')" 
     end
     sql.prepend("LOWER(")
     sql << ") = '#{name.downcase}'"
@@ -52,10 +52,10 @@ class School < ActiveRecord::Base
     et.each {|e| name = name.gsub(e.input, e.output)}
     nt = NeglectedTerm.all
     nt.each {|n| name = name.gsub(n.exclude, '').squeeze(' ')}
-    sql = "REPLACE(schools.name, ' #{nt[0].exclude}', '')"
+    sql = "REPLACE(schools.name, '#{nt[0].exclude}', '')"
     nt.drop(1).map do |n|
       sql.prepend("REPLACE(") 
-      sql << ", ' #{n.exclude}', '')" 
+      sql << ", '#{n.exclude}', '')" 
     end
     sql.prepend("LOWER(")
     sql << ") = '#{name.downcase}'"
@@ -253,6 +253,12 @@ class School < ActiveRecord::Base
         school.id? ? updatecount += 1 : newcount += 1
         school.attributes = row.to_hash.slice(*School.attribute_names())
       end
+
+      if row["city_state_zip"].present?
+        school.city = row["city_state_zip"].split(",").first
+        school.zip = row["city_state_zip"].split(",").second.gsub(/[^0-9\.]/, '')
+      end
+
       if row["district_name"].present?
         district = District.find_by_name(row["district_name"]) || District.new(:name => row["district_name"])
         district.id? ? updateddistrict += 1 : newdistrict += 1

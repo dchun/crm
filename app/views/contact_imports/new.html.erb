@@ -14,14 +14,14 @@
 <p>A CSV or Excel file can be used to import records. The first row should be the column name. The following columns are allowed.</p>
 
 <ul>
-<li><strong>id</strong> - Integer type: <code>first check - if id present? update else new Contact</code></li>
+<li><strong>id</strong> - Integer type: <code>first check - if id present? Update else new Contact</code></li>
 <li><strong>fname</strong><span class="required"></span> - String type</li>
 <li><strong>lname</strong> - String type</li>
-<li><strong>email</strong><span class="required"></span> - String type: <code>second check - if email present? update else new Contact</code></li>
-<li><strong>salutation</strong><span class="required"></span> - String type: <code>must be in AcceptableContactSalutations</code></li>
-<li><strong>position</strong><span class="required"></span> - String type: <code>must be in AcceptableContactPositions</code></li>
-<li><strong>role</strong><span class="required"></span> - String type: <code>must be in AcceptableContactRoles</code></li>
-<li><strong>school_name</strong><span class="required"></span> - String type: <code>if school_name exists? add school_id else add temp_school_name</code></li>
+<li><strong>email</strong><span class="required"></span> - String type: <code>second check - if email present? Update else new Contact</code></li>
+<li><strong>salutation</strong><span class="required"></span> - String type: <code>must be in AcceptableContactSalutations list</code></li>
+<li><strong>position</strong><span class="required"></span> - String type: <code>must be in AcceptableContactPositions list</code></li>
+<li><strong>role</strong><span class="required"></span> - String type: <code>must be in AcceptableContactRoles list</code></li>
+<li><strong>school_name</strong></span> - String type: <code>see matching below</code></li>
 <li><strong>created_at</strong> - Datetime type</li>
 <li><strong>updated_at</strong> - Datetime type</li>
 <li><strong>reference_url</strong> - String type</li>
@@ -30,6 +30,15 @@
 
 <h4>Required Items</h4>
 <p>Items starred with a red asterisk <span class="required"></span> are required</p>
+
+<h4>Order of School Name Matching</h4>
+<ol>
+  <li>find by <code>school_name</code> downcased in <code>School.name</code> downcased</li>
+  <li>find by <code>school_name</code> downcased in <code>School.name</code> replaced by all terms in <code>EquivalentTerms</code> downcased list</li>
+  <li>find by <code>school_name</code> downcased in <code>School.name</code> and remove all terms in <code>NeglectedTerms</code> downcased list</li>
+  <li>find by <code>school_name</code> downcased in <code>School.name</code> replaced by all terms in <code>EquivalentTerms</code> downcased list and remove all terms in <code>NeglectedTerms</code> downcased list</li>
+  <li>else create <code>temp_school_name</code></li>
+</ol>
 
 <%= form_for @contact_import do |f| %>
   <div class="field">
