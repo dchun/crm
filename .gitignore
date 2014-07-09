@@ -15,6 +15,9 @@
 /log/*.log
 /tmp
 
-/public/files/*
 # Ignore application configuration
 /config/application.yml
+
+# Ignore uploaded files
+/public/files/*
+/public/uploads/*
