@@ -47,8 +47,6 @@
       </ol>
 
     </div>
-
-    <hr>
     
     <div id="import-schools">
       <h3>School Import</h3>
@@ -101,8 +99,6 @@
       </ul>
 
     </div>
-
-    <hr>
     
     <div id="import-districts">
       <h3>District Import</h3>
