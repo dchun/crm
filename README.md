@@ -48,12 +48,13 @@
         <li>find by <code>school_name</code> downcased in <code>School.name</code> replaced by all terms in <code>EquivalentTerms</code> downcased list and remove all terms in <code>NeglectedTerms</code> downcased list</li>
         <li>else create <code>temp_school_name</code></li>
       </ol>
+
     </div>
 
     <hr>
     
     <div id="import-schools">
-    <h3>School Import</h3>
+      <h3>School Import</h3>
 
       <p>A CSV or Excel file can be used to import records. The first row should be the column name. The following columns are allowed.</p>
 
