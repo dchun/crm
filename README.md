@@ -6,14 +6,11 @@
     <ol>
       <li>Districts</li>
       <li>Schools</li>
-      <h5>Add below fields inidividually before importing contacts</h5>
-      <ul>
-        <li>Equivalent Terms</li>
-        <li>Neglected Terms</li>
-        <li>Acceptable Contact Salutations</li>
-        <li>Acceptable Contact Positions</li>
-        <li>Acceptable Contact Roles</li>
-      </ul>
+      <li>Equivalent Terms</li>
+      <li>Neglected Terms</li>
+      <li>Acceptable Contact Salutations</li>
+      <li>Acceptable Contact Positions</li>
+      <li>Acceptable Contact Roles</li>
       <li>Contacts</li>
     </ol>
 
